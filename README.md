@@ -1,2 +1,2 @@
-# proyectop32k24b
-Repositorio de evidencias del proyecto de programacion III orientado a Universidades modelo MVC
+# proyectop32k24
+Proyecto final curso de programacion III UMG
