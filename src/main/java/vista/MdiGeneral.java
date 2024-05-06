@@ -45,6 +45,7 @@ public class MdiGeneral extends javax.swing.JFrame {
         mnuCatalogosMantenimientosCursos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosAlumnos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosMaestros = new javax.swing.JMenuItem();
+        mnuCatalogosMantenimientosCarreras = new javax.swing.JMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         mnuReportes = new javax.swing.JMenu();
         mnuAyudas = new javax.swing.JMenu();
@@ -114,6 +115,14 @@ public class MdiGeneral extends javax.swing.JFrame {
         });
         mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosMaestros);
 
+        mnuCatalogosMantenimientosCarreras.setText("Mantenimiento Carreras");
+        mnuCatalogosMantenimientosCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCatalogosMantenimientosCarrerasActionPerformed(evt);
+            }
+        });
+        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosCarreras);
+
         mnuCatalogos.add(mnuCatalogosMantenimiento);
 
         jMenuBar1.add(mnuCatalogos);
@@ -175,6 +184,15 @@ public class MdiGeneral extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuCatalogosMantenimientosAlumnosActionPerformed
 
+    private void mnuCatalogosMantenimientosCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosCarrerasActionPerformed
+        // TODO add your handling code here:
+        MantenimientoCarreras ventana = new MantenimientoCarreras();
+        jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2); 
+    }//GEN-LAST:event_mnuCatalogosMantenimientosCarrerasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -222,6 +240,7 @@ public class MdiGeneral extends javax.swing.JFrame {
     private javax.swing.JMenu mnuCatalogos;
     private javax.swing.JMenu mnuCatalogosMantenimiento;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosAlumnos;
+    private javax.swing.JMenuItem mnuCatalogosMantenimientosCarreras;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosCursos;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosMaestros;
     private javax.swing.JMenu mnuProcesos;
