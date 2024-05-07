@@ -18,7 +18,7 @@ public class Alumnos {
     //To string para qué no nos salga los resultados en memoria
      @Override
     public String toString() {
-        return "Alumnos{" + "Carnet_alumno=" + carnet_alumno + ", Nombre_alumno=" + nombre_alumno + ", Direccion_alumno=" + direccion_alumno + ", Telefono_alumno=" + telefono_alumno + ", Email_alumno=" + email_alumno + ", Estatus_alumno=" + estatus_alumno + '}';
+        return "Alumnos{" + "carnet_alumno=" + carnet_alumno + ", combre_alumno=" + nombre_alumno + ", direccion_alumno=" + direccion_alumno + ", telefono_alumno=" + telefono_alumno + ", email_alumno=" + email_alumno + ", estatus_alumno=" + estatus_alumno + '}';
     }
     
     public String getCarnet_alumno() {

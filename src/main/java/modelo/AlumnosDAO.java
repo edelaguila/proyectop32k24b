@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
 
@@ -20,6 +19,7 @@ import java.util.Set;
  * @author cdavi
  */
 public class AlumnosDAO {
+    
     private static final String SQL_SELECT = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno FROM alumnos";
     private static final String SQL_INSERT = "INSERT INTO alumnos(carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno) VALUES(?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE alumnos SET nombre_alumno=?, direccion_alumno=?, telefono_alumno=?, email_alumno=?, estatus_alumno=? WHERE carnet_alumno = ?";
@@ -32,6 +32,7 @@ public class AlumnosDAO {
         ResultSet rs = null;
         Alumnos alumno = null;
         List<Alumnos> alumnos = new ArrayList<Alumnos>();
+        
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -79,7 +80,6 @@ public class AlumnosDAO {
             stmt.setString(4, alumno.getTelefono_alumno());
             stmt.setString(5, alumno.getEmail_alumno());
             stmt.setString(6, alumno.getEstatus_alumno());
-
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
             System.out.println("Registros afectados:" + rows);
@@ -107,7 +107,6 @@ public class AlumnosDAO {
             stmt.setString(4, alumno.getTelefono_alumno());
             stmt.setString(5, alumno.getEmail_alumno());
             stmt.setString(6, alumno.getEstatus_alumno());
-    
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
@@ -157,20 +156,21 @@ public class AlumnosDAO {
             stmt.setString(1, alumno.getNombre_alumno());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                String carnet_alumno = rs.getString("carnet_alumno");
-                String nombre_alumno = rs.getString("nombre_alumno");
-                String direccion_alumno = rs.getString("direccion__alumno");
-                String telefono_alumno = rs.getString("telefono_alumno");
-                String email_alumno = rs.getString("email_alumno");
-                String estatus_alumno = rs.getString("estatus_alumno");
+                
+                String carnet = rs.getString("carnet_alumno");
+                String nombre = rs.getString("nombre_alumno");
+                String direccion= rs.getString("direccion__alumno");
+                String telefono = rs.getString("telefono_alumno");
+                String email = rs.getString("email_alumno");
+                String estatus = rs.getString("estatus_alumno");
 
                 alumno = new Alumnos();
-                alumno.setCarnet_alumno(carnet_alumno);
-                alumno.setNombre_alumno(nombre_alumno);
-                alumno.setDireccion_alumno(direccion_alumno);
-                alumno.setTelefono_alumno(telefono_alumno);
-                alumno.setEmail_alumno(email_alumno);
-                alumno.setEstatus_alumno(estatus_alumno);
+                alumno.setCarnet_alumno(carnet);
+                alumno.setNombre_alumno(nombre);
+                alumno.setDireccion_alumno(direccion);
+                alumno.setTelefono_alumno(telefono);
+                alumno.setEmail_alumno(email);
+                alumno.setEstatus_alumno(estatus);
             }
             //System.out.println("Registros buscado:" + vendedor);
         } catch (SQLException ex) {

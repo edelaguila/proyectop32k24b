@@ -23,7 +23,6 @@ vista\MantenimientoCursos$7.class
 vista\MantenimientoMaestros$3.class
 vista\MantenimientoAlumnos$6.class
 vista\MantenimientoMaestros$6.class
-vista\MantenimientoMaestros$9.class
 modelo\UsuarioDAO.class
 vista\MdiGeneral$1.class
 controlador\Maestros.class
