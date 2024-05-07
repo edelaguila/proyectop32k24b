@@ -12,7 +12,7 @@ ENGINE = InnoDB CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE alumnos
  (
-  carnet_alumno VARCHAR(15),
+  carnet_alumno VARCHAR(5),
   nombre_alumno VARCHAR(45),
   direccion_alumno VARCHAR(45),
   telefono_alumno VARCHAR(45),

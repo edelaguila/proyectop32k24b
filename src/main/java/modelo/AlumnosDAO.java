@@ -6,7 +6,6 @@
 package modelo;
 
 import controlador.Alumnos;
-import modelo.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,11 +20,11 @@ import java.util.Set;
  * @author cdavi
  */
 public class AlumnosDAO {
-     private static final String SQL_SELECT = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno FROM alumnos";
-    private static final String SQL_INSERT = "INSERT INTO alumnos(carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno) VALUES(?, ?)";
+    private static final String SQL_SELECT = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno FROM alumnos";
+    private static final String SQL_INSERT = "INSERT INTO alumnos(carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno) VALUES(?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE alumnos SET nombre_alumno=?, direccion_alumno=?, telefono_alumno=?, email_alumno=?, estatus_alumno=? WHERE carnet_alumno = ?";
     private static final String SQL_DELETE = "DELETE FROM alumnos WHERE carnet_alumno=?";
-    private static final String SQL_QUERY = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alummno, estatus_alummno FROM alumnos WHERE nombre_alumno = ?";
+    private static final String SQL_QUERY = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alummno, estatus_alummno FROM alumnos WHERE carnet_alumno = ?";
 
     public List<Alumnos> select() {
         Connection conn = null;
@@ -67,19 +66,19 @@ public class AlumnosDAO {
         return alumnos;
     }
 
-    public int insert(Alumnos alumnos) {
+    public int insert(Alumnos alumno) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, alumnos.getCarnet_alumno());
-            stmt.setString(2, alumnos.getNombre_alumno());
-            stmt.setString(3, alumnos.getDireccion_alumno());
-            stmt.setString(4, alumnos.getTelefono_alumno());
-            stmt.setString(5, alumnos.getEmail_alumno());
-            stmt.setString(6, alumnos.getEstatus_alumno());
+            stmt.setString(1, alumno.getCarnet_alumno());
+            stmt.setString(2, alumno.getNombre_alumno());
+            stmt.setString(3, alumno.getDireccion_alumno());
+            stmt.setString(4, alumno.getTelefono_alumno());
+            stmt.setString(5, alumno.getEmail_alumno());
+            stmt.setString(6, alumno.getEstatus_alumno());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -94,7 +93,7 @@ public class AlumnosDAO {
         return rows;
     }
 
-    public int update(Alumnos alumnos) {
+    public int update(Alumnos alumno) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -102,12 +101,12 @@ public class AlumnosDAO {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1,alumnos.getCarnet_alumno());
-            stmt.setString(2, alumnos.getNombre_alumno());
-            stmt.setString(3, alumnos.getDireccion_alumno());
-            stmt.setString(4, alumnos.getTelefono_alumno());
-            stmt.setString(5, alumnos.getEmail_alumno());
-            stmt.setString(6, alumnos.getEstatus_alumno());
+            stmt.setString(1,alumno.getCarnet_alumno());
+            stmt.setString(2, alumno.getNombre_alumno());
+            stmt.setString(3, alumno.getDireccion_alumno());
+            stmt.setString(4, alumno.getTelefono_alumno());
+            stmt.setString(5, alumno.getEmail_alumno());
+            stmt.setString(6, alumno.getEstatus_alumno());
     
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
@@ -173,7 +172,7 @@ public class AlumnosDAO {
                 alumno.setEmail_alumno(email_alumno);
                 alumno.setEstatus_alumno(estatus_alumno);
             }
-            //System.out.println("Registros buscado:" + persona);
+            //System.out.println("Registros buscado:" + vendedor);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {

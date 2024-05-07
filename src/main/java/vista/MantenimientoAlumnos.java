@@ -5,8 +5,10 @@
  */
 package vista;
 
-import modelo.EmpleadoDAO;
 import modelo.AlumnosDAO;
+import modelo.CursosDAO;
+import modelo.EmpleadoDAO;
+import controlador.Cursos;
 import controlador.Empleado;
 import controlador.Alumnos;
 import java.util.List;
@@ -40,7 +42,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         modelo.addColumn("Estatus");
         AlumnosDAO alumnoDAO = new AlumnosDAO();
         List<Alumnos> alumnos = alumnoDAO.select();
-        tablaAlumnos.setModel(modelo);
+        tablaVendedores.setModel(modelo);
         String[] dato = new String[6];
         for (int i = 0; i < alumnos.size(); i++) {
             dato[0] = alumnos.get(i).getCarnet_alumno();
@@ -55,16 +57,16 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
     }
 
     public void buscarAlumno() {
-        Alumnos alumnoAConsultar = new Alumnos();
+        Alumnos alumnosAConsultar = new Alumnos();
         AlumnosDAO alumnoDAO = new AlumnosDAO();
-        alumnoAConsultar.setCarnet_alumno((txtbuscado.getText()));
-        alumnoAConsultar = alumnoDAO.query(alumnoAConsultar);
-        txtCarnet.setText(alumnoAConsultar.getCarnet_alumno());
-        txtNombre.setText(alumnoAConsultar.getNombre_alumno());
-        txtDireccion.setText(alumnoAConsultar.getDireccion_alumno());
-        txtTelefono.setText(alumnoAConsultar.getTelefono_alumno());
-        txtEmail.setText(alumnoAConsultar.getEmail_alumno());
-        txtEstatus.setText(alumnoAConsultar.getEstatus_alumno());
+        alumnosAConsultar.setCarnet_alumno((txtbuscado.getText()));
+        alumnosAConsultar = alumnoDAO.query(alumnosAConsultar);
+        txtCarnet.setText(alumnosAConsultar.getCarnet_alumno());
+        txtNombre.setText(alumnosAConsultar.getNombre_alumno());
+        txtDireccion.setText(alumnosAConsultar.getDireccion_alumno());
+        txtTelefono.setText(alumnosAConsultar.getTelefono_alumno());
+        txtEmail.setText(alumnosAConsultar.getEmail_alumno());
+        txtEstatus.setText(alumnosAConsultar.getEstatus_alumno());
     }
 
     public MantenimientoAlumnos() {
@@ -94,7 +96,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAlumnos = new javax.swing.JTable();
+        tablaVendedores = new javax.swing.JTable();
         cbox_empleado = new javax.swing.JComboBox<>();
         label4 = new javax.swing.JLabel();
         txtEstatus = new javax.swing.JTextField();
@@ -164,8 +166,8 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
-        tablaAlumnos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaVendedores.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tablaVendedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -173,7 +175,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
                 "Carnet Alumno", "Nombre", "Direccion", "Telefono", "Email", "Estatus"
             }
         ));
-        jScrollPane1.setViewportView(tablaAlumnos);
+        jScrollPane1.setViewportView(tablaVendedores);
 
         cbox_empleado.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         cbox_empleado.addActionListener(new java.awt.event.ActionListener() {
@@ -404,6 +406,8 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
 
+        //llenadoDeTablas();
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -450,7 +454,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
-    private javax.swing.JTable tablaAlumnos;
+    private javax.swing.JTable tablaVendedores;
     private javax.swing.JTextField txtCarnet;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
