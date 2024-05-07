@@ -45,6 +45,7 @@ public class MdiGeneral extends javax.swing.JFrame {
         mnuCatalogosMantenimientosCursos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosAlumnos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosMaestros = new javax.swing.JMenuItem();
+        mnuCatalogosMantenimientosSecciones = new javax.swing.JMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         mnuReportes = new javax.swing.JMenu();
         mnuAyudas = new javax.swing.JMenu();
@@ -114,6 +115,14 @@ public class MdiGeneral extends javax.swing.JFrame {
         });
         mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosMaestros);
 
+        mnuCatalogosMantenimientosSecciones.setText("Mantenimiento Secciones");
+        mnuCatalogosMantenimientosSecciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCatalogosMantenimientosSeccionesActionPerformed(evt);
+            }
+        });
+        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosSecciones);
+
         mnuCatalogos.add(mnuCatalogosMantenimiento);
 
         jMenuBar1.add(mnuCatalogos);
@@ -175,6 +184,17 @@ public class MdiGeneral extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuCatalogosMantenimientosAlumnosActionPerformed
 
+    private void mnuCatalogosMantenimientosSeccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosSeccionesActionPerformed
+        MantenimientoSecciones ventana = new MantenimientoSecciones();
+        jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuCatalogosMantenimientosSeccionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +244,7 @@ public class MdiGeneral extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuCatalogosMantenimientosAlumnos;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosCursos;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosMaestros;
+    private javax.swing.JMenuItem mnuCatalogosMantenimientosSecciones;
     private javax.swing.JMenu mnuProcesos;
     private javax.swing.JMenu mnuReportes;
     // End of variables declaration//GEN-END:variables
