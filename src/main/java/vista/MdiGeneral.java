@@ -172,7 +172,11 @@ public class MdiGeneral extends javax.swing.JFrame {
 
     private void mnuCatalogosMantenimientosAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosAlumnosActionPerformed
         // TODO add your handling code here:
-        
+        MantenimientoAlumnos ventana3 = new MantenimientoAlumnos();
+        jDesktopPane1.add(ventana3);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana3.getSize();
+        ventana3.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_mnuCatalogosMantenimientosAlumnosActionPerformed
 
     /**
