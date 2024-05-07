@@ -34,7 +34,6 @@ vista\MdiGeneral$8.class
 modelo\FacultadesDAO.class
 vista\MantenimientoFacultades$6.class
 vista\MantenimientoMaestros$6.class
-vista\MantenimientoMaestros$9.class
 modelo\UsuarioDAO.class
 vista\MdiGeneral$1.class
 controlador\Maestros.class
@@ -43,7 +42,6 @@ vista\MdiGeneral$5.class
 vista\Login$3.class
 vista\MantenimientoSecciones$1.class
 modelo\MaestrosDAO.class
-vista\MantenimientoFacultades$9.class
 vista\MdiGeneral$4.class
 vista\MantenimientoFacultades$2.class
 vista\MantenimientoMaestros$2.class
