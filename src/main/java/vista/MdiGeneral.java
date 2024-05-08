@@ -195,7 +195,6 @@ public class MdiGeneral extends javax.swing.JFrame {
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        
     }//GEN-LAST:event_mnuCatalogosMantenimientosAlumnosActionPerformed
 
     private void mnuCatalogosMantenimientosSeccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosSeccionesActionPerformed

@@ -2,20 +2,28 @@ vista\MantenimientoMaestros$4.class
 controlador\Cursos.class
 vista\MantenimientoFacultades$4.class
 vista\Login$2.class
+<<<<<<< HEAD
 vista\MantenimientoFacultades$1.class
 vista\MantenimientoSecciones$9.class
+=======
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 vista\MantenimientoCursos$4.class
 vista\MdiGeneral.class
 vista\MantenimientoMaestros$1.class
 vista\MantenimientoCursos$8.class
+<<<<<<< HEAD
 vista\MantenimientoSecciones.class
 vista\MantenimientoCursos$1.class
 vista\MantenimientoFacultades$7.class
+=======
+vista\MantenimientoCursos$1.class
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 modelo\Conexion.class
 vista\MantenimientoAlumnos$1.class
 vista\MantenimientoAlumnos$4.class
 vista\MantenimientoMaestros$7.class
 modelo\CursosDAO.class
+<<<<<<< HEAD
 vista\MantenimientoSecciones$6.class
 vista\MdiGeneral$7.class
 vista\MdiGeneral$2.class
@@ -30,18 +38,31 @@ modelo\SeccionDAO.class
 controlador\Usuario.class
 vista\MantenimientoMaestros.class
 vista\MantenimientoFacultades$8.class
+=======
+vista\MdiGeneral$2.class
+vista\Login.class
+vista\MantenimientoAlumnos.class
+vista\MantenimientoAlumnos$7.class
+vista\MantenimientoAlumnos$3.class
+controlador\Usuario.class
+vista\MantenimientoMaestros.class
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 vista\MantenimientoCursos.class
 vista\MantenimientoCursos$7.class
 vista\MantenimientoMaestros$3.class
 vista\MantenimientoAlumnos$6.class
+<<<<<<< HEAD
 vista\MantenimientoSecciones$4.class
 vista\MdiGeneral$8.class
 modelo\FacultadesDAO.class
 vista\MantenimientoFacultades$6.class
+=======
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 vista\MantenimientoMaestros$6.class
 modelo\UsuarioDAO.class
 vista\MdiGeneral$1.class
 controlador\Maestros.class
+<<<<<<< HEAD
 vista\MantenimientoFacultades.class
 vista\MdiGeneral$5.class
 vista\Login$3.class
@@ -60,6 +81,20 @@ vista\MantenimientoSecciones$5.class
 modelo\AlumnosDAO.class
 vista\MantenimientoAlumnos$2.class
 vista\MantenimientoSecciones$8.class
+=======
+vista\MdiGeneral$5.class
+vista\Login$3.class
+modelo\MaestrosDAO.class
+vista\MdiGeneral$4.class
+vista\MantenimientoMaestros$2.class
+vista\MantenimientoCursos$3.class
+vista\MantenimientoCursos$6.class
+vista\MantenimientoCursos$5.class
+vista\MantenimientoMaestros$5.class
+vista\Login$1.class
+modelo\AlumnosDAO.class
+vista\MantenimientoAlumnos$2.class
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 controlador\Empleado.class
 vista\MantenimientoCursos$2.class
 vista\MantenimientoMaestros$8.class
@@ -69,5 +104,8 @@ modelo\EmpleadoDAO.class
 vista\Login$4.class
 vista\MantenimientoAlumnos$5.class
 vista\MdiGeneral$3.class
+<<<<<<< HEAD
 vista\MantenimientoSecciones$2.class
 vista\MantenimientoFacultades$3.class
+=======
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15

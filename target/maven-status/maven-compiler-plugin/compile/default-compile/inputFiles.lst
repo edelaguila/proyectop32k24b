@@ -1,19 +1,29 @@
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\Conexion.java
+<<<<<<< HEAD
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Facultades.java
+=======
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Empleado.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Maestros.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\EmpleadoDAO.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\CursosDAO.java
+<<<<<<< HEAD
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\FacultadesDAO.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Seccion.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoAlumnos.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\SeccionDAO.java
+=======
+C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoAlumnos.java
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoCursos.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\AlumnosDAO.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\MaestrosDAO.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Cursos.java
+<<<<<<< HEAD
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoFacultades.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoSecciones.java
+=======
+>>>>>>> 7384af23df4fdbac60fd029bca8296fa73f40c15
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Usuario.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\Login.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Alumnos.java
