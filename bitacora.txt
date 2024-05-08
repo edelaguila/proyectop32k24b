@@ -1,15 +1,3 @@
-commit 41fcfd35321c2c234bb3b87a9f3d1f2050a0a14d
-Author: Wilber Ordonez <wordonezr2@miumg.edu.gt>
-Date:   Tue May 7 03:14:36 2024 -0600
-
-    modificacion boton eliminar
-
-commit 63011c8bdb02ac33e0a67b4f2414b0ad4c9cb38c
-Author: Wilber Ordonez <wordonezr2@miumg.edu.gt>
-Date:   Tue May 7 02:41:59 2024 -0600
-
-    base de facultades
-
 commit 1f3aaf2dd3a96a4618c1e98357b00ec0a00e8d24
 Author: Wilber Ordonez <wordonezr2@miumg.edu.gt>
 Date:   Tue May 7 00:27:21 2024 -0600
