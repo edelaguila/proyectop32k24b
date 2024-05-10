@@ -46,6 +46,7 @@ public class MdiGeneral extends javax.swing.JFrame {
         mnuCatalogosMantenimientosCursos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosAlumnos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosMaestros = new javax.swing.JMenuItem();
+        mnuCatalogosMantenimientosTiposDePagos = new javax.swing.JMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         mnuReportes = new javax.swing.JMenu();
         mnuSeguridad = new javax.swing.JMenu();
@@ -118,6 +119,14 @@ public class MdiGeneral extends javax.swing.JFrame {
             }
         });
         mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosMaestros);
+
+        mnuCatalogosMantenimientosTiposDePagos.setText("Mantenimiento TiposDePagos");
+        mnuCatalogosMantenimientosTiposDePagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCatalogosMantenimientosTiposDePagosActionPerformed(evt);
+            }
+        });
+        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosTiposDePagos);
 
         mnuCatalogos.add(mnuCatalogosMantenimiento);
 
@@ -202,6 +211,14 @@ public class MdiGeneral extends javax.swing.JFrame {
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_mnuSeguridadBitacoraActionPerformed
 
+    private void mnuCatalogosMantenimientosTiposDePagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosTiposDePagosActionPerformed
+      MantenimientoPagos ventana = new MantenimientoPagos();
+        jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+    }//GEN-LAST:event_mnuCatalogosMantenimientosTiposDePagosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,6 +269,7 @@ public class MdiGeneral extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuCatalogosMantenimientosAlumnos;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosCursos;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosMaestros;
+    private javax.swing.JMenuItem mnuCatalogosMantenimientosTiposDePagos;
     private javax.swing.JMenu mnuProcesos;
     private javax.swing.JMenu mnuReportes;
     private javax.swing.JMenu mnuSeguridad;

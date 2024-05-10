@@ -15,29 +15,32 @@ import java.util.List;
  * @author Joseg
  */
 public class TiposDePagoDAO {
-     private static final String SQL_SELECT = "SELECT id_tipo_pago, nombre, descripcion FROM TiposDePagos";
-    private static final String SQL_INSERT = "INSERT INTO TiposDePagos(nombre, descripcion) VALUES(?, ?)";
-    private static final String SQL_UPDATE = "UPDATE TiposDePagos SET nombre=?, descripcion=? WHERE id_tipo_pago = ?";
-    private static final String SQL_DELETE = "DELETE FROM TiposDePagos WHERE id_tipo_pago=?";
-    private static final String SQL_QUERY = "SELECT id_tipo_pago, nombre, descripcion FROM TiposDePagos WHERE id_tipo_pago = ?";
+     private static final String SQL_SELECT = "SELECT id_tipo_pago, nombre_tipo_pago, cantidad_tipo_pago FROM TiposDePagos";
+     private static final String SQL_INSERT = "INSERT INTO TiposDePagos(nombre_tipo_pago) VALUES(?)";
+     private static final String SQL_UPDATE = "UPDATE TiposDePagos SET id_tipo_pago=? WHERE id_tipo_pago = ?";
+     private static final String SQL_DELETE = "DELETE FROM TiposDePagos WHERE id_tipo_pago=?";
+     private static final String SQL_QUERY = "SELECT id_tipo_pago, nombre_tipo_pago, cantidad_tipo_pago FROM TiposDePagos WHERE id_tipo_pago = ?";
 
     public List<TiposDePagos> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         TiposDePagos tipoPago = null;
-        List<TiposDePagos> tiposDePagos = new ArrayList<>();
+        List<TiposDePagos> tiposDePagos = new ArrayList<TiposDePagos>();
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id_tipo_pago");
-                String nombre = rs.getString("nombre");
-                String descripcion = rs.getString("descripcion");
-
-                tipoPago = new TiposDePagos(id, nombre, descripcion);
+                String id = rs.getString("id_tipo_pago");
+                String nombre = rs.getString("nombre_tipo_pago");
+                String cantidad = rs.getString("cantidad_tipo_pago");
+              
+                tipoPago = new TiposDePagos();
+                tipoPago.setIdTipoPago(id);
+                tipoPago.setNombrePago(nombre);
+                tipoPago.setcantidadPago(cantidad);
                 tiposDePagos.add(tipoPago);
             }
 
@@ -59,9 +62,10 @@ public class TiposDePagoDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, tipoPago.getNombre());
-            stmt.setString(2, tipoPago.getDescripcion());
+            stmt.setString(1, tipoPago.getNombrePago());
+            System.out.println("ejecución query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
+            System.out.println("Registros afectados:" + rows);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -78,11 +82,14 @@ public class TiposDePagoDAO {
 
         try {
             conn = Conexion.getConnection();
+            System.out.println("Ejecución query:" + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, tipoPago.getNombre());
-            stmt.setString(2, tipoPago.getDescripcion());
-            stmt.setInt(3, tipoPago.getIdTipoPago());
+            stmt.setString(1, tipoPago.getNombrePago());
+            stmt.setString(2, tipoPago.getIdTipoPago());
+            stmt.setString(3, tipoPago.getcantidadPago());
             rows = stmt.executeUpdate();
+            System.out.println("Registros actualizad:" + rows);
+            
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -100,9 +107,11 @@ public class TiposDePagoDAO {
 
         try {
             conn = Conexion.getConnection();
+            System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, tipoPago.getIdTipoPago());
+            stmt.setString(1, tipoPago.getIdTipoPago());
             rows = stmt.executeUpdate();
+            System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -121,11 +130,10 @@ public class TiposDePagoDAO {
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setInt(1, tipoPago.getIdTipoPago());
+            stmt.setString(1, tipoPago.getIdTipoPago());
             rs = stmt.executeQuery();
             if (rs.next()) {
-                tipoPago.setNombre(rs.getString("nombre"));
-                tipoPago.setDescripcion(rs.getString("descripcion"));
+                tipoPago.setNombrePago(rs.getString("nombre_tipo_pago"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
