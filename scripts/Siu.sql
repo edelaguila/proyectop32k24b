@@ -173,7 +173,7 @@ CREATE TABLE TiposDePagos
 -- -----------------------------------------------------
 -- Table `siu`.`Tipo_Monedas`
 -- -----------------------------------------------------
-CREATE TABLE tipo_monedas
+CREATE TABLE tiposdemoneda
 (
   id_moneda INT NOT NULL AUTO_INCREMENT,
   nombre_moneda VARCHAR(45),
@@ -192,6 +192,6 @@ CREATE TABLE Tesoreria (
     id_moneda INT,
     PRIMARY KEY (id_tesoreria),
     FOREIGN KEY (id_banco) REFERENCES bancos(id_banco),
-    FOREIGN KEY (id_tipo_pago) REFERENCES tipo_pago(id_tipo_pago),
-    FOREIGN KEY (id_moneda) REFERENCES tipo_monedas(id_moneda)
+    FOREIGN KEY (id_tipo_pago) REFERENCES TiposDePagos(id_tipo_pago),
+    FOREIGN KEY (id_moneda) REFERENCES tiposdemoneda(id_moneda)
 )ENGINE = InnoDB DEFAULT CHARSET=latin1;

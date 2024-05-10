@@ -46,7 +46,9 @@ public class MdiGeneral extends javax.swing.JFrame {
         mnuCatalogosMantenimientosCursos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosAlumnos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosMaestros = new javax.swing.JMenuItem();
+        ManBanco = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosTiposDePagos = new javax.swing.JMenuItem();
+        ManMoneda = new javax.swing.JMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         mnuReportes = new javax.swing.JMenu();
         mnuSeguridad = new javax.swing.JMenu();
@@ -120,6 +122,14 @@ public class MdiGeneral extends javax.swing.JFrame {
         });
         mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosMaestros);
 
+        ManBanco.setText("Mantenimiento Bancos");
+        ManBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManBancoActionPerformed(evt);
+            }
+        });
+        mnuCatalogosMantenimiento.add(ManBanco);
+
         mnuCatalogosMantenimientosTiposDePagos.setText("Mantenimiento TiposDePagos");
         mnuCatalogosMantenimientosTiposDePagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +137,14 @@ public class MdiGeneral extends javax.swing.JFrame {
             }
         });
         mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosTiposDePagos);
+
+        ManMoneda.setText("Mantenimiento TipoDeMoneda");
+        ManMoneda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManMonedaActionPerformed(evt);
+            }
+        });
+        mnuCatalogosMantenimiento.add(ManMoneda);
 
         mnuCatalogos.add(mnuCatalogosMantenimiento);
 
@@ -212,12 +230,30 @@ public class MdiGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuSeguridadBitacoraActionPerformed
 
     private void mnuCatalogosMantenimientosTiposDePagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosTiposDePagosActionPerformed
-      MantenimientoPagos ventana = new MantenimientoPagos();
+        MantenimientoPagos ventana = new MantenimientoPagos();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_mnuCatalogosMantenimientosTiposDePagosActionPerformed
+
+    private void ManBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManBancoActionPerformed
+        // TODO add your handling code here:
+        MantenimientoBancos ventana = new MantenimientoBancos();
+        jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+    }//GEN-LAST:event_ManBancoActionPerformed
+
+    private void ManMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManMonedaActionPerformed
+        // TODO add your handling code here:
+        MantenimientoTiposDeMoneda ventana = new MantenimientoTiposDeMoneda();
+        jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+    }//GEN-LAST:event_ManMonedaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +291,8 @@ public class MdiGeneral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ManBanco;
+    private javax.swing.JMenuItem ManMoneda;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

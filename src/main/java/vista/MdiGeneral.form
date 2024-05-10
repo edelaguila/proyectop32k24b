@@ -80,12 +80,28 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCatalogosMantenimientosMaestrosActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="ManBanco">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Mantenimiento Bancos"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManBancoActionPerformed"/>
+                  </Events>
+                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuCatalogosMantenimientosTiposDePagos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Mantenimiento TiposDePagos"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCatalogosMantenimientosTiposDePagosActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="ManMoneda">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Mantenimiento TipoDeMoneda"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManMonedaActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
