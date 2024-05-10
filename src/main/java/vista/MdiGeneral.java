@@ -46,6 +46,7 @@ public class MdiGeneral extends javax.swing.JFrame {
         mnuCatalogosMantenimientosCursos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosAlumnos = new javax.swing.JMenuItem();
         mnuCatalogosMantenimientosMaestros = new javax.swing.JMenuItem();
+        mnuCatalogosMantenimientosCiclos = new javax.swing.JMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         mnuReportes = new javax.swing.JMenu();
         mnuSeguridad = new javax.swing.JMenu();
@@ -118,6 +119,14 @@ public class MdiGeneral extends javax.swing.JFrame {
             }
         });
         mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosMaestros);
+
+        mnuCatalogosMantenimientosCiclos.setText("Mantenimiento Ciclos");
+        mnuCatalogosMantenimientosCiclos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCatalogosMantenimientosCiclosActionPerformed(evt);
+            }
+        });
+        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosCiclos);
 
         mnuCatalogos.add(mnuCatalogosMantenimiento);
 
@@ -202,6 +211,27 @@ public class MdiGeneral extends javax.swing.JFrame {
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_mnuSeguridadBitacoraActionPerformed
 
+    private void mnuCatalogosMantenimientosCiclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosCiclosActionPerformed
+          MantenimientoCiclos ventana = new MantenimientoCiclos();
+        jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+
+
+
+
+
+        // TODO add your handling code here:
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_mnuCatalogosMantenimientosCiclosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,6 +280,7 @@ public class MdiGeneral extends javax.swing.JFrame {
     private javax.swing.JMenu mnuCatalogos;
     private javax.swing.JMenu mnuCatalogosMantenimiento;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosAlumnos;
+    private javax.swing.JMenuItem mnuCatalogosMantenimientosCiclos;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosCursos;
     private javax.swing.JMenuItem mnuCatalogosMantenimientosMaestros;
     private javax.swing.JMenu mnuProcesos;
