@@ -28,6 +28,7 @@ vista\MantenimientoAlumnos.class
 vista\MantenimientoSecciones$3.class
 controlador\Facultades.class
 vista\MantenimientoFacultades$5.class
+vista\MantenimientoAlumnos$7.class
 vista\MantenimientoAlumnos$3.class
 vista\MantenimientoSecciones$7.class
 modelo\SeccionDAO.class
