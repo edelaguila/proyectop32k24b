@@ -9,65 +9,46 @@ package controlador;
  * @author Joseg
  */
 public class TiposDePagos {
-    private int idTipoPago;
-    private String nombre;
-    private String descripcion;
+
+    private String id_tipo_pago;
+    private String nombre_tipo_pago; 
+    private String cantidad_tipo_pago;
+   
 
     public TiposDePagos() {
     }
 
-    public TiposDePagos(int idTipoPago, String nombre, String descripcion) {
-        this.idTipoPago = idTipoPago;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+    public TiposDePagos(String id_tipo_pago, String nombre_tipo_pago, String cantidad_tipo_pago) {
+        this.id_tipo_pago = id_tipo_pago;
+        this.nombre_tipo_pago = nombre_tipo_pago;
+        this.cantidad_tipo_pago = cantidad_tipo_pago;
+      
     }
 
-    public int getIdTipoPago() {
-        return idTipoPago;
+    public String getIdTipoPago() {
+        return id_tipo_pago;
     }
 
-    public void setIdTipoPago(int idTipoPago) {
-        this.idTipoPago = idTipoPago;
+    public void setIdTipoPago(String idTipoPago) {
+        this.id_tipo_pago = id_tipo_pago;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombrePago() {
+        return nombre_tipo_pago;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombrePago(String nombrePago) {
+        this.nombre_tipo_pago = nombre_tipo_pago;
     }
-
-    public String getDescripcion() {
-        return descripcion;
+    public String getcantidadPago() {
+        return cantidad_tipo_pago;
     }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setcantidadPago(String cantidadTipoPago){
+        this.cantidad_tipo_pago = cantidad_tipo_pago;
     }
 
     @Override
     public String toString() {
-        return "TiposDePagos{" +
-                "idTipoPago=" + idTipoPago +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
-    }
-
-    public String getCodigo_tipo_pago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getNombre_tipo_pago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getEstatus_tipo_pago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setCodigo_tipo_pago(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return "TiposDePagos{" + "id_tipo_pago=" + id_tipo_pago + ", nombre_tipo_pago='" + nombre_tipo_pago + ", cantidad_tipo_pago='"+ cantidad_tipo_pago +'}';
+    }  
 }
