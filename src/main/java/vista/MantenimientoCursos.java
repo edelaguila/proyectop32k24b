@@ -16,8 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
-import controlador.clsBitacora;
-import controlador.clsUsuarioConectado;
 
 /**
  *
@@ -25,9 +23,7 @@ import controlador.clsUsuarioConectado;
  */
 public class MantenimientoCursos extends javax.swing.JInternalFrame {
 
-    int codigoAplicacion = 2000;
-    clsBitacora Auditoria = new clsBitacora();
-  
+    String codigoAplicacion = "2000";
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         List<Empleado> empleados = empleadoDAO.select();
@@ -312,7 +308,6 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         Cursos cursoAEliminar = new Cursos();
         cursoAEliminar.setCodigo_curso(txtbuscado.getText());
         cursoDAO.delete(cursoAEliminar);
-        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
         //bitacora.ingresar(codigoAplicacion, usuarioRegistrado, "DEL");
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -325,7 +320,6 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         cursoAInsertar.setNombre_curso(txtNombre.getText());
         cursoAInsertar.setEstatus_curso(txtEstatus.getText());
         cursoDAO.insert(cursoAInsertar);
-        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");        
         llenadoDeTablas();
         //bitacora.ingresar(codigoAplicacion, usuarioRegistrado, "INS");        
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -343,7 +337,6 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         cursoAActualizar.setNombre_curso(txtNombre.getText());
         cursoAActualizar.setEstatus_curso(txtEstatus.getText());
         cursoDAO.update(cursoAActualizar);
-        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
