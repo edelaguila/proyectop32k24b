@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
+import controlador.clsBitacora;
+import controlador.clsUsuarioConectado;
 
 /**
  *
@@ -23,7 +25,8 @@ import java.util.Set;
  */
 public class MantenimientoCarreras extends javax.swing.JInternalFrame {
 
-    String codigoAplicacion = "2000";
+    int codigoAplicacion = 2040;
+    clsBitacora Auditoria = new clsBitacora();
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         List<Empleado> empleados = empleadoDAO.select();
@@ -110,7 +113,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("2000 Mantenimiento Carreras");
+        setTitle("2040 Mantenimiento Carreras");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -318,6 +321,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         Carreras carreraAEliminar = new Carreras();
         carreraAEliminar.setCodigo_carrera(txtbuscado.getText());
         carreraDAO.delete(carreraAEliminar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -325,10 +329,12 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         CarrerasDAO carreraDAO = new CarrerasDAO();
         Carreras carreraAInsertar = new Carreras();
         carreraAInsertar.setCodigo_carrera(txtCodigo.getText());
+        
         carreraAInsertar.setNombre_carrera(txtNombre.getText());
         carreraAInsertar.setCodigo_facultad(txtCodigoFacultad.getText());
         carreraAInsertar.setEstatus_carrera(txtEstatus.getText());
         carreraDAO.insert(carreraAInsertar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
         llenadoDeTablas();      
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -346,6 +352,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         carreraAActualizar.setCodigo_facultad(txtCodigoFacultad.getText());
         carreraAActualizar.setEstatus_carrera(txtEstatus.getText());
         carreraDAO.update(carreraAActualizar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
