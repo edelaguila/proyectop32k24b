@@ -16,6 +16,17 @@ import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
+import controlador.clsUsuarioConectado;
+import controlador.clsBitacora;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+import modelo.Conexion;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -23,6 +34,8 @@ import java.util.Set;
  */
 public class MantenimientoMaestros extends javax.swing.JInternalFrame {
 
+    int codigoAplicacion = 4444;
+    clsBitacora Auditoria = new clsBitacora();
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         List<Empleado> empleados = empleadoDAO.select();
@@ -100,7 +113,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         txtEstatus = new javax.swing.JTextField();
         label5 = new javax.swing.JLabel();
         lb = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
         label6 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         label7 = new javax.swing.JLabel();
@@ -118,7 +131,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento Maestros");
+        setTitle("4444 - Mantenimiento Maestros");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -193,10 +206,10 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
 
-        jButton2.setText("Ayuda");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAyuda.setText("Ayuda");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAyudaActionPerformed(evt);
             }
         });
 
@@ -269,7 +282,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
@@ -330,7 +343,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLimpiar)
-                            .addComponent(jButton2)
+                            .addComponent(btnAyuda)
                             .addComponent(btnReporte))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -348,6 +361,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         Maestros maestroAEliminar = new Maestros();
         maestroAEliminar.setCodigo_maestro(txtbuscado.getText());
         maestroDAO.delete(maestroAEliminar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -361,6 +375,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         maestroAInsertar.setEmail_maestro(txtEmail.getText());
         maestroAInsertar.setEstatus_maestro(txtEstatus.getText());
         maestroDAO.insert(maestroAInsertar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
         llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -380,6 +395,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         maestroAActualizar.setEmail_maestro(txtEmail.getText());
         maestroAActualizar.setEstatus_maestro(txtEstatus.getText());
         maestroDAO.update(maestroAActualizar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -401,7 +417,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // TODO add your handling code here:
         try {
             if ((new File("src\\main\\java\\ayudas\\CapacitaciónMaestrosAyuda.chm")).exists()) {
@@ -416,21 +432,38 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         // TODO add your handling code here:
+        Connection conn = null;        
+        Map p = new HashMap();
+        JasperReport report;
+        JasperPrint print;
+
+        try {
+            conn = Conexion.getConnection();
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/main/java/reportes/rptTabla_Maestros.jrxml");
+	    print = JasperFillManager.fillReport(report, p, conn);
+            JasperViewer view = new JasperViewer(print, false);
+	    view.setTitle("Reporte Maestros");
+            view.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "PRN");
     }//GEN-LAST:event_btnReporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnReporte;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label3;
