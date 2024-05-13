@@ -25,7 +25,9 @@ import controlador.clsUsuarioConectado;
  */
 public class MantenimientoCarreras extends javax.swing.JInternalFrame {
 
-    int codigoAplicacion = 2000;
+
+    int codigoAplicacion = 2040;
+
     clsBitacora Auditoria = new clsBitacora();
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -113,7 +115,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("2000 Mantenimiento Carreras");
+        setTitle("2040 Mantenimiento Carreras");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -329,6 +331,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         CarrerasDAO carreraDAO = new CarrerasDAO();
         Carreras carreraAInsertar = new Carreras();
         carreraAInsertar.setCodigo_carrera(txtCodigo.getText());
+        
         carreraAInsertar.setNombre_carrera(txtNombre.getText());
         carreraAInsertar.setCodigo_facultad(txtCodigoFacultad.getText());
         carreraAInsertar.setEstatus_carrera(txtEstatus.getText());

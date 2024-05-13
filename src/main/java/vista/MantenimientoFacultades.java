@@ -14,12 +14,16 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JOptionPane;
-
+import controlador.clsBitacora;
+import controlador.clsUsuarioConectado;
 /**
  *
  * @author visitante
  */
 public class MantenimientoFacultades extends javax.swing.JInternalFrame {
+
+        int codigoAplicacion = 2040;
+            clsBitacora Auditoria = new clsBitacora();
 
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -369,11 +373,13 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
     }
 
     facultadesDAO.insert(facultadesAInsertar);
+    Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
     llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "SRC");
         buscarFacultades();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -396,6 +402,7 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
     }
 
     facultadesDAO.update(facultadesAActualizar);
+    Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
     llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -432,6 +439,7 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "HLP");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void mnuEstadoFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEstadoFacultadActionPerformed
