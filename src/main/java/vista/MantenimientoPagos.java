@@ -13,6 +13,17 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JOptionPane;
+import controlador.clsBitacora;
+import controlador.clsUsuarioConectado;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+import modelo.Conexion;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -20,58 +31,64 @@ import javax.swing.JOptionPane;
  */
 public class MantenimientoPagos extends javax.swing.JInternalFrame {
 
+    int codigoAplicacion = 3456;
+    clsBitacora Auditoria = new clsBitacora();
+    private DefaultTableModel modeloTabla;
     
     public void llenadoDeTablas() {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Id del pago");
-        modelo.addColumn("Tipo del Pago");
-        modelo.addColumn("Cantidad del pago");
-        TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
-        List<TiposDePagos> TiposDePagos = TiposDePagoDAO.select();
-        tablaPagos.setModel(modelo);
-        String[] dato = new String[3];
-        for (int i = 0; i < TiposDePagos.size(); i++) {
-            dato[0] = TiposDePagos.get(i).getIdTipoPago();
-            dato[1] = TiposDePagos.get(i).getNombrePago();
-          
-           
-            modelo.addRow(dato);
-        }
+        if (modeloTabla == null) {
+        modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("ID del Pago");
+        modeloTabla.addColumn("Tipo de Pago");
+        modeloTabla.addColumn("Cantidad del Pago");
+        tablaPagos.setModel(modeloTabla);
+    } else {
+  
+        modeloTabla.setRowCount(0);
+    }
+
+    TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
+    List<TiposDePagos> TiposDePagos = TiposDePagoDAO.select();
+    
+    for (TiposDePagos tipoPago : TiposDePagos) {
+        Object[] fila = new Object[3];
+        fila[0] = tipoPago.getIdTipoPago();
+        fila[1] = tipoPago.getNombrePago();
+        fila[2] = tipoPago.getcantidadPago();
+        modeloTabla.addRow(fila);
+    }
     }
 
     public void buscarTiposPagos() {
-    TiposDePagos TiposDePagosAConsultar = new TiposDePagos(); // Definición de la variable dentro del método
-    TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
-    TiposDePagosAConsultar.setIdTipoPago(txtbuscado.getText());
-    TiposDePagosAConsultar = TiposDePagoDAO.query(TiposDePagosAConsultar);
-    txtIDpago.setText(TiposDePagosAConsultar.getIdTipoPago());
-    txtNombrePago.setText(TiposDePagosAConsultar.getNombrePago());
-    txtCantidadPago.setText(TiposDePagosAConsultar.getcantidadPago());
+        TiposDePagos TiposDePagosAConsultar = new TiposDePagos();
+        TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
+        TiposDePagosAConsultar.setIdTipoPago((txtbuscado.getText()));
+        TiposDePagosAConsultar = TiposDePagoDAO.query(TiposDePagosAConsultar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "ISO");
+        txtIDpago.setText(TiposDePagosAConsultar.getIdTipoPago());
+        txtNombrePago.setText(TiposDePagosAConsultar.getNombrePago());
+        txtCantidadPago.setText(TiposDePagosAConsultar.getcantidadPago());
 }
 
     
     public void eliminarTiposPagos(){
-       int filaSeleccionada = tablaPagos.getSelectedRow();
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione una fila para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-    DefaultTableModel modelo = (DefaultTableModel) tablaPagos.getModel();
-    modelo.removeRow(filaSeleccionada);
+      TiposDePagoDAO cursoDAO = new TiposDePagoDAO();
+        TiposDePagos TiposDePagosAEliminar = new TiposDePagos();
+        TiposDePagosAEliminar.setIdTipoPago(txtbuscado.getText());
+        cursoDAO.delete(TiposDePagosAEliminar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
+        llenadoDeTablas();
     }
     
     public void registrarTiposPagos(){
-         String idPago = txtIDpago.getText();
-    String nombrePago = txtNombrePago.getText();
-    String cantidadPago = txtCantidadPago.getText();
-    Object[] nuevoDato = {idPago, nombrePago, cantidadPago};
-
-    
-    DefaultTableModel modelo = (DefaultTableModel) tablaPagos.getModel();
-    modelo.addRow(nuevoDato);
-    txtIDpago.setText("");
-    txtNombrePago.setText("");
-    txtCantidadPago.setText("");
+        TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
+        TiposDePagos TiposDePagosAInsertar = new TiposDePagos();
+        TiposDePagosAInsertar.setIdTipoPago(txtIDpago.getText());
+        TiposDePagosAInsertar.setNombrePago(txtNombrePago.getText());
+        TiposDePagosAInsertar.setcantidadPago(txtCantidadPago.getText());
+        TiposDePagoDAO.insert(TiposDePagosAInsertar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");        
+        llenadoDeTablas();
     }
     public MantenimientoPagos() {
         initComponents();
@@ -106,6 +123,8 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         label6 = new javax.swing.JLabel();
         txtIDpago = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnReporte = new javax.swing.JButton();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -164,20 +183,17 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
         tablaPagos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
                 "ID del Pago", "Tipo de Pago", "Cantidad del Pago"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tablaPagos);
 
         txtCantidadPago.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -202,6 +218,15 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
         txtIDpago.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtIDpago.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
+        jLabel1.setText("Ingrese dato a buscar:");
+
+        btnReporte.setText("Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,8 +248,11 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
                         .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtbuscado)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,13 +260,15 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addGap(29, 29, 29))
@@ -280,9 +310,12 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
                             .addComponent(btnBuscar)
                             .addComponent(btnLimpiar)
                             .addComponent(jButton2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporte))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -304,11 +337,12 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
         TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
-        TiposDePagos cursoAActualizar = new TiposDePagos();
-        cursoAActualizar.setIdTipoPago(txtbuscado.getText());
-        cursoAActualizar.setNombrePago(txtNombrePago.getText());
-        cursoAActualizar.setcantidadPago(txtCantidadPago.getText());
-        TiposDePagoDAO.update(cursoAActualizar);
+        TiposDePagos tiposdepagoAActualizar = new TiposDePagos();
+        tiposdepagoAActualizar.setIdTipoPago(txtbuscado.getText());
+        tiposdepagoAActualizar.setNombrePago(txtNombrePago.getText());
+        tiposdepagoAActualizar.setcantidadPago(txtCantidadPago.getText());
+        TiposDePagoDAO.update(tiposdepagoAActualizar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -317,6 +351,7 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
         txtNombrePago.setText("");
         txtCantidadPago.setText("");
         txtbuscado.setText("");
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "CLN");
         btnRegistrar.setEnabled(true);
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
@@ -335,11 +370,31 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
             } else {
                 System.out.println("La ayuda no Fue encontrada");
             }
+            Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "HELP");
             System.out.println("Correcto");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        Connection conn = null;        
+        Map p = new HashMap();
+        JasperReport report;
+        JasperPrint print;
+
+        try {
+            conn = Conexion.getConnection();
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/main/java/reportes/rptBitacora3.jrxml");
+	    print = JasperFillManager.fillReport(report, p, conn);
+            JasperViewer view = new JasperViewer(print, false);
+	    view.setTitle("Reporte Tipos de Pagos");
+            view.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -348,7 +403,9 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label3;
