@@ -3,6 +3,7 @@ C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\EmpleadoDAO.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\CursosDAO.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Seccion.java
+C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\clsUsuarioConectado.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoAlumnos.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoCarreras.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\SeccionDAO.java
@@ -14,9 +15,12 @@ C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\CarrerasDAO.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\Conexion.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Maestros.java
+C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\daoBitacora.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\modelo\FacultadesDAO.java
+C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\frmMantenimientoBitacora.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Carreras.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\MantenimientoCursos.java
+C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\clsBitacora.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Cursos.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\vista\Login.java
 C:\Users\cdavi.LAPTOP-03LNUIL0\Desktop\proyectop32k24b\src\main\java\controlador\Alumnos.java

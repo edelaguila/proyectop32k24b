@@ -51,14 +51,17 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnBuscar" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtbuscado" min="-2" pref="102" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="btnRegistrar" min="-2" pref="95" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnModificar" min="-2" pref="95" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnReporte" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnBuscar" alignment="0" pref="95" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtbuscado" min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -160,7 +163,10 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnAyuda" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnAyuda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnReporte" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="38" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -426,6 +432,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAyudaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnReporte">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reporte"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

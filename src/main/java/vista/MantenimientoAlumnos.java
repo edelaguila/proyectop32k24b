@@ -11,11 +11,25 @@ import modelo.EmpleadoDAO;
 import controlador.Cursos;
 import controlador.Empleado;
 import controlador.Alumnos;
+import controlador.clsBitacora;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.HashSet;
+import controlador.clsUsuarioConectado;
 import java.util.Set;
+import modelo.Conexion;
+import java.sql.Connection;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -23,6 +37,8 @@ import java.util.Set;
  */
 public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
 
+            int codigoAplicacion = 2010;
+            clsBitacora Auditoria = new clsBitacora();
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         List<Empleado> empleados = empleadoDAO.select();
@@ -109,6 +125,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         txtDireccion = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         btnAyuda = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -223,6 +240,13 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReporte.setText("Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,13 +262,15 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnReporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +347,9 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
                             .addComponent(btnBuscar)
                             .addComponent(btnLimpiar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAyuda)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAyuda)
+                    .addComponent(btnReporte))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -334,6 +362,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         Alumnos alumnoAEliminar = new Alumnos();
         alumnoAEliminar.setCarnet_alumno(txtbuscado.getText());
         alumnoDAO.delete(alumnoAEliminar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -347,6 +376,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         alumnoAInsertar.setEmail_alumno(txtEmail.getText());
         alumnoAInsertar.setEstatus_alumno(txtEstatus.getText());
         alumnoDAO.insert(alumnoAInsertar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
         llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -366,6 +396,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         alumnoAActualizar.setEmail_alumno(txtEmail.getText());
         alumnoAActualizar.setEstatus_alumno(txtEstatus.getText());
         alumnoDAO.update(alumnoAActualizar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -403,6 +434,27 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAyudaActionPerformed
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        // TODO add your handling code here:
+        Connection conn = null;        
+        Map p = new HashMap();
+        JasperReport report;
+        JasperPrint print;
+
+        try {
+            conn = Conexion.getConnection();
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/main/java/reportes/rptAlumnos.jrxml");
+	    print = JasperFillManager.fillReport(report, p, conn);
+            JasperViewer view = new JasperViewer(print, false);
+	    view.setTitle("Reporte Prueba");
+            view.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_btnReporteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAyuda;
@@ -411,6 +463,7 @@ public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label3;
