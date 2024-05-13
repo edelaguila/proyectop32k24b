@@ -15,11 +15,20 @@ import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
+
+import controlador.clsBitacora;
+import controlador.clsUsuarioConectado;
+
+
 /**
  *
  * @author visitante
  */
 public class MantenimientoSecciones extends javax.swing.JInternalFrame {
+    
+        int codigoAplicacion = 2020;
+
+    clsBitacora Auditoria = new clsBitacora();
 
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -325,6 +334,7 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
         Seccion seccionAEliminar = new Seccion();
         seccionAEliminar.setCodigo_seccion(txtbuscado.getText());
         seccionDAO.delete(seccionAEliminar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -336,11 +346,13 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
         seccionAInsertar.setNombre_seccion(txtNombre.getText());
         seccionAInsertar.setEstatus_seccion(txtEstatus.getText());
         seccionDAO.insert(seccionAInsertar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
         llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "SRC");
         buscarVendedor();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -352,6 +364,7 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
         seccionAActualizar.setNombre_seccion(txtNombre.getText());
         seccionAActualizar.setEstatus_seccion(txtEstatus.getText());
         seccionDAO.update(seccionAActualizar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
