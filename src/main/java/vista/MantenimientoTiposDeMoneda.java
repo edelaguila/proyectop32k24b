@@ -13,8 +13,17 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import static java.lang.Integer.parseInt;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import modelo.Conexion;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -45,6 +54,7 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
         for (int i = 0; i < TiposDeMoneda.size(); i++) {
             dato[0] = Integer.toString(TiposDeMoneda.get(i).getIdMoneda());
             dato[1] = TiposDeMoneda.get(i).getNombreMoneda();
+            dato[2] = TiposDeMoneda.get(i).getValorMoneda();
 
             modelo.addRow(dato);
         }
@@ -284,6 +294,7 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
         TiposDeMoneda monedaAInsertar = new TiposDeMoneda();
         monedaAInsertar.setIdMoneda(parseInt(txtID.getText()));
         monedaAInsertar.setNombreMoneda(txtNombreM.getText());
+        monedaAInsertar.setValorMoneda(txtValor.getText());
         
         tiposDeMonedaDAO.insert(monedaAInsertar);    
         llenadoDeTablas();
@@ -324,6 +335,22 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         // TODO add your handling code here:
+        Connection conn = null;        
+        Map p = new HashMap();
+        JasperReport report;
+        JasperPrint print;
+
+        try {
+            conn = Conexion.getConnection();
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/main/java/reportes/rptTiposDeMoneda.jrxml");
+	    print = JasperFillManager.fillReport(report, p, conn);
+            JasperViewer view = new JasperViewer(print, false);
+	    view.setTitle("Reporte Tipos de moneda");
+            view.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnReporteActionPerformed
 
 

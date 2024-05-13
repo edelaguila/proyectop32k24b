@@ -17,11 +17,11 @@ import java.util.List;
  */
 public class TiposDeMonedaDAO {
 
-    private static final String SQL_SELECT = "SELECT id_moneda, nombre_moneda FROM TiposDeMoneda";
-    private static final String SQL_INSERT = "INSERT INTO TiposDeMoneda(id_moneda, nombre_moneda) VALUES(?,?)";
-    private static final String SQL_UPDATE = "UPDATE TiposDeMoneda SET nombre_moneda=? WHERE id_moneda = ?";
+    private static final String SQL_SELECT = "SELECT id_moneda, nombre_moneda, valor_moneda FROM TiposDeMoneda";
+    private static final String SQL_INSERT = "INSERT INTO TiposDeMoneda(id_moneda, nombre_moneda, valor_moneda) VALUES(?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE TiposDeMoneda SET nombre_moneda=?, valor_moneda=? WHERE id_moneda = ?";
     private static final String SQL_DELETE = "DELETE FROM TiposDeMoneda WHERE id_moneda=?";
-    private static final String SQL_QUERY = "SELECT id_moneda, nombre_moneda FROM TiposDeMoneda WHERE id_moneda = ?";
+    private static final String SQL_QUERY = "SELECT id_moneda, nombre_moneda, valor_moneda FROM TiposDeMoneda WHERE id_moneda = ?";
 
     public List<TiposDeMoneda> select() {
         Connection conn = null;
@@ -37,10 +37,12 @@ public class TiposDeMonedaDAO {
             while (rs.next()) {
                 int id = rs.getInt("id_moneda");
                 String nombre = rs.getString("nombre_moneda");
+                String valor = rs.getString("valor_moneda");
 
                 tipoMoneda = new TiposDeMoneda();
                 tipoMoneda.setIdMoneda(id);
                 tipoMoneda.setNombreMoneda(nombre);
+                tipoMoneda.setValorMoneda(valor);
                 TiposDeMoneda.add(tipoMoneda);
             }
 
@@ -64,6 +66,7 @@ public class TiposDeMonedaDAO {
             stmt = conn.prepareStatement(SQL_INSERT);
             stmt.setInt   (1, tipoMoneda.getIdMoneda());
             stmt.setString(2, tipoMoneda.getNombreMoneda());
+            stmt.setString(3, tipoMoneda.getValorMoneda());
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
             System.out.println("Registros afectados:" + rows);
@@ -87,6 +90,7 @@ public class TiposDeMonedaDAO {
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setString(1, tipoMoneda.getNombreMoneda());
             stmt.setInt(2, tipoMoneda.getIdMoneda());
+            stmt.setString(3, tipoMoneda.getValorMoneda());
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
