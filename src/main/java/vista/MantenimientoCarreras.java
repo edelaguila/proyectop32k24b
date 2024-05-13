@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
+import controlador.clsBitacora;
+import controlador.clsUsuarioConectado;
 
 /**
  *
@@ -23,7 +25,8 @@ import java.util.Set;
  */
 public class MantenimientoCarreras extends javax.swing.JInternalFrame {
 
-    String codigoAplicacion = "2000";
+    int codigoAplicacion = 2000;
+    clsBitacora Auditoria = new clsBitacora();
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         List<Empleado> empleados = empleadoDAO.select();
@@ -318,6 +321,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         Carreras carreraAEliminar = new Carreras();
         carreraAEliminar.setCodigo_carrera(txtbuscado.getText());
         carreraDAO.delete(carreraAEliminar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -329,11 +333,13 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         carreraAInsertar.setCodigo_facultad(txtCodigoFacultad.getText());
         carreraAInsertar.setEstatus_carrera(txtEstatus.getText());
         carreraDAO.insert(carreraAInsertar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
         llenadoDeTablas();      
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "SRC");
         buscarVendedor();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -346,6 +352,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         carreraAActualizar.setCodigo_facultad(txtCodigoFacultad.getText());
         carreraAActualizar.setEstatus_carrera(txtEstatus.getText());
         carreraDAO.update(carreraAActualizar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -373,6 +380,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "HLP");
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
