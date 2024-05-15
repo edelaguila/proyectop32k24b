@@ -80,6 +80,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCatalogosMantenimientosMaestrosActionPerformed"/>
                   </Events>
                 </MenuItem>
+
                 <MenuItem class="javax.swing.JMenuItem" name="ManBanco">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Mantenimiento Bancos"/>
@@ -102,6 +103,30 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManMonedaActionPerformed"/>
+
+                <MenuItem class="javax.swing.JMenuItem" name="mnuCatalogosMantenimientosSecciones">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Mantenimiento Secciones"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCatalogosMantenimientosSeccionesActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuCatalogosMantenimientosFacultades">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Mantenimiento Facultades"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCatalogosMantenimientosFacultadesActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuCatalogosMantenimientosCarreras">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Mantenimiento Carreras"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCatalogosMantenimientosCarrerasActionPerformed"/>
+
                   </Events>
                 </MenuItem>
               </SubComponents>

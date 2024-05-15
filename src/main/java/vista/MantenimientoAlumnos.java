@@ -5,36 +5,28 @@
  */
 package vista;
 
-import modelo.MaestrosDAO;
+import modelo.AlumnosDAO;
 import modelo.CursosDAO;
 import modelo.EmpleadoDAO;
 import controlador.Cursos;
 import controlador.Empleado;
-import controlador.Maestros;
+import controlador.Alumnos;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
-import controlador.clsUsuarioConectado;
+
 import controlador.clsBitacora;
-import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
-import modelo.Conexion;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+import controlador.clsUsuarioConectado;
 
 /**
  *
  * @author visitante
  */
-public class MantenimientoMaestros extends javax.swing.JInternalFrame {
+public class MantenimientoAlumnos extends javax.swing.JInternalFrame {
+    int codigoAplicacion = 2010;
 
-    int codigoAplicacion = 4444;
     clsBitacora Auditoria = new clsBitacora();
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -47,42 +39,42 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID Maestro");
+        modelo.addColumn("Carnet");
         modelo.addColumn("Nombre");
         modelo.addColumn("Direccion");
         modelo.addColumn("Telefono");
         modelo.addColumn("Email");
         modelo.addColumn("Estatus");
-        MaestrosDAO maestroDAO = new MaestrosDAO();
-        List<Maestros> maestros = maestroDAO.select();
-        tablaVendedores.setModel(modelo);
+        AlumnosDAO alumnoDAO = new AlumnosDAO();
+        List<Alumnos> alumnos = alumnoDAO.select();
+        tablaAlumno.setModel(modelo);
         String[] dato = new String[6];
-        for (int i = 0; i < maestros.size(); i++) {
-            dato[0] = maestros.get(i).getCodigo_maestro();
-            dato[1] = maestros.get(i).getNombre_maestro();
-            dato[2] = maestros.get(i).getDireccion_maestro();
-            dato[3] = maestros.get(i).getTelefono_maestro();
-            dato[4] = maestros.get(i).getEmail_maestro();
-            dato[5] = maestros.get(i).getEstatus_maestro();
+        for (int i = 0; i < alumnos.size(); i++) {
+            dato[0] = alumnos.get(i).getCarnet_alumno();
+            dato[1] = alumnos.get(i).getNombre_alumno();
+            dato[2] = alumnos.get(i).getDireccion_alumno();
+            dato[3] = alumnos.get(i).getTelefono_alumno();
+            dato[4] = alumnos.get(i).getEmail_alumno();
+            dato[5] = alumnos.get(i).getEstatus_alumno();
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
     }
 
-    public void buscarMaestros() {
-        Maestros maestroAConsultar = new Maestros();
-        MaestrosDAO maestroDAO = new MaestrosDAO();
-        maestroAConsultar.setCodigo_maestro((txtbuscado.getText()));
-        maestroAConsultar = maestroDAO.query(maestroAConsultar);
-        txtCodigo.setText(maestroAConsultar.getCodigo_maestro());
-        txtNombre.setText(maestroAConsultar.getNombre_maestro());
-        txtDireccion.setText(maestroAConsultar.getDireccion_maestro());
-        txtTelefono.setText(maestroAConsultar.getTelefono_maestro());
-        txtEmail.setText(maestroAConsultar.getEmail_maestro());
-        txtEstatus.setText(maestroAConsultar.getEstatus_maestro());
+    public void buscarAlumnos() {
+        Alumnos alumnoAConsultar = new Alumnos();
+        AlumnosDAO alumnoDAO = new AlumnosDAO();
+        alumnoAConsultar.setCarnet_alumno((txtbuscado.getText()));
+        alumnoAConsultar = alumnoDAO.query(alumnoAConsultar);
+        txtCarnet.setText(alumnoAConsultar.getCarnet_alumno());
+        txtNombre.setText(alumnoAConsultar.getNombre_alumno());
+        txtDireccion.setText(alumnoAConsultar.getDireccion_alumno());
+        txtTelefono.setText(alumnoAConsultar.getTelefono_alumno());
+        txtEmail.setText(alumnoAConsultar.getEmail_alumno());
+        txtEstatus.setText(alumnoAConsultar.getEstatus_alumno());
     }
 
-    public MantenimientoMaestros() {
+    public MantenimientoAlumnos() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -109,20 +101,19 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaVendedores = new javax.swing.JTable();
+        tablaAlumno = new javax.swing.JTable();
         txtEstatus = new javax.swing.JTextField();
         label5 = new javax.swing.JLabel();
         lb = new javax.swing.JLabel();
-        btnAyuda = new javax.swing.JButton();
         label6 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
+        txtCarnet = new javax.swing.JTextField();
         label7 = new javax.swing.JLabel();
         label8 = new javax.swing.JLabel();
         label9 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        btnReporte = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -131,7 +122,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("4444 - Mantenimiento Maestros");
+        setTitle("Mantenimiento Alumnos");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -156,7 +147,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         });
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Cursos");
+        label1.setText("Alumnos");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +157,7 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         });
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Codigo");
+        label3.setText("Carnet");
 
         txtNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -178,24 +169,24 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
             }
         });
 
-        tablaVendedores.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        tablaVendedores.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAlumno.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tablaAlumno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Vendedor", "ID Empleado", "Correo", "Telefono", "Direccion", "Porcentaje", "Comision"
+                "Carnet", "Nombre", "Correo", "Telefono", "Direccion", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true
+                false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaVendedores);
+        jScrollPane1.setViewportView(tablaAlumno);
 
         txtEstatus.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtEstatus.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -206,18 +197,11 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
 
-        btnAyuda.setText("Ayuda");
-        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAyudaActionPerformed(evt);
-            }
-        });
-
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label6.setText("Nombre");
 
-        txtCodigo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtCarnet.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtCarnet.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label7.setText("Direccion");
@@ -237,10 +221,10 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         txtEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
-        btnReporte.setText("Reporte");
-        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+        btnAyuda.setText("Ayuda");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteActionPerformed(evt);
+                btnAyudaActionPerformed(evt);
             }
         });
 
@@ -250,6 +234,22 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,55 +264,35 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                             .addComponent(txtNombre)
-                            .addComponent(txtCodigo)
+                            .addComponent(txtCarnet)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtDireccion)
                             .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
-                        .addComponent(label1)
-                        .addGap(294, 294, 294))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(label1)
+                        .addGap(294, 294, 294))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(label1)
                 .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -335,21 +315,19 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(label5)
                             .addComponent(txtEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrar)
-                            .addComponent(btnModificar)
-                            .addComponent(btnEliminar))
+                            .addComponent(btnEliminar)
+                            .addComponent(btnModificar))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpiar)
-                            .addComponent(btnAyuda)
-                            .addComponent(btnReporte))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBuscar)
-                            .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnLimpiar))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAyuda)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -357,51 +335,51 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        MaestrosDAO maestroDAO = new MaestrosDAO();
-        Maestros maestroAEliminar = new Maestros();
-        maestroAEliminar.setCodigo_maestro(txtbuscado.getText());
-        maestroDAO.delete(maestroAEliminar);
+        AlumnosDAO alumnoDAO = new AlumnosDAO();
+        Alumnos alumnoAEliminar = new Alumnos();
+        alumnoAEliminar.setCarnet_alumno(txtbuscado.getText());
+        alumnoDAO.delete(alumnoAEliminar);
         Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        MaestrosDAO maestroDAO = new MaestrosDAO();
-        Maestros maestroAInsertar = new Maestros();
-        maestroAInsertar.setCodigo_maestro(txtCodigo.getText());
-        maestroAInsertar.setNombre_maestro(txtNombre.getText());
-        maestroAInsertar.setDireccion_maestro(txtDireccion.getText());
-        maestroAInsertar.setTelefono_maestro(txtTelefono.getText());
-        maestroAInsertar.setEmail_maestro(txtEmail.getText());
-        maestroAInsertar.setEstatus_maestro(txtEstatus.getText());
-        maestroDAO.insert(maestroAInsertar);
-        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
+        AlumnosDAO alumnoDAO = new AlumnosDAO();
+        Alumnos alumnoAInsertar = new Alumnos();
+        alumnoAInsertar.setCarnet_alumno(txtCarnet.getText());
+        alumnoAInsertar.setNombre_alumno(txtNombre.getText());
+        alumnoAInsertar.setDireccion_alumno(txtDireccion.getText());
+        alumnoAInsertar.setTelefono_alumno(txtTelefono.getText());
+        alumnoAInsertar.setEmail_alumno(txtEmail.getText());
+        alumnoAInsertar.setEstatus_alumno(txtEstatus.getText());
+        alumnoDAO.insert(alumnoAInsertar);
         llenadoDeTablas();
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        buscarMaestros();
+        buscarAlumnos();
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "SCR");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        MaestrosDAO maestroDAO = new MaestrosDAO();
-        Maestros maestroAActualizar = new Maestros();
-        maestroAActualizar.setCodigo_maestro(txtbuscado.getText());
-        maestroAActualizar.setNombre_maestro(txtNombre.getText());
-        maestroAActualizar.setDireccion_maestro(txtDireccion.getText());
-        maestroAActualizar.setTelefono_maestro(txtTelefono.getText());
-        maestroAActualizar.setEmail_maestro(txtEmail.getText());
-        maestroAActualizar.setEstatus_maestro(txtEstatus.getText());
-        maestroDAO.update(maestroAActualizar);
+        AlumnosDAO alumnoDAO = new AlumnosDAO();
+        Alumnos alumnoAActualizar = new Alumnos();
+        alumnoAActualizar.setCarnet_alumno(txtbuscado.getText());
+        alumnoAActualizar.setNombre_alumno(txtNombre.getText());
+        alumnoAActualizar.setDireccion_alumno(txtDireccion.getText());
+        alumnoAActualizar.setTelefono_alumno(txtTelefono.getText());
+        alumnoAActualizar.setEmail_alumno(txtEmail.getText());
+        alumnoAActualizar.setEstatus_alumno(txtEstatus.getText());
+        alumnoDAO.update(alumnoAActualizar);
         Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        
-        txtCodigo.setText("");
+        txtCarnet.setText("");
         txtNombre.setText("");
         txtDireccion.setText("");
         txtTelefono.setText("");
@@ -420,10 +398,10 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // TODO add your handling code here:
         try {
-            if ((new File("src\\main\\java\\ayudas\\CapacitaciónMaestrosAyuda.chm")).exists()) {
+            if ((new File("src\\main\\java\\ayudas\\AyudasAlumnos.chm")).exists()) {
                 Process p = Runtime
-                        .getRuntime()
-                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\ayudas\\CapacitaciónMaestrosAyuda.chm");
+                .getRuntime()
+                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\ayudas\\AyudasAlumnos.chm");
                 p.waitFor();
             } else {
                 System.out.println("La ayuda no Fue encontrada");
@@ -434,27 +412,6 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAyudaActionPerformed
 
-    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        // TODO add your handling code here:
-        Connection conn = null;        
-        Map p = new HashMap();
-        JasperReport report;
-        JasperPrint print;
-
-        try {
-            conn = Conexion.getConnection();
-            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/reportes/rptTabla_Maestros.jrxml");
-	    print = JasperFillManager.fillReport(report, p, conn);
-            JasperViewer view = new JasperViewer(print, false);
-	    view.setTitle("Reporte Maestros");
-            view.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "PRN");
-    }//GEN-LAST:event_btnReporteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAyuda;
@@ -463,7 +420,6 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnReporte;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label3;
@@ -475,8 +431,8 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
-    private javax.swing.JTable tablaVendedores;
-    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTable tablaAlumno;
+    private javax.swing.JTextField txtCarnet;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEstatus;
