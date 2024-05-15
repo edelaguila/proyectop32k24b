@@ -33,37 +33,29 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
 
     int codigoAplicacion = 3456;
     clsBitacora Auditoria = new clsBitacora();
-    private DefaultTableModel modeloTabla;
     
     public void llenadoDeTablas() {
-        if (modeloTabla == null) {
-        modeloTabla = new DefaultTableModel();
-        modeloTabla.addColumn("ID del Pago");
-        modeloTabla.addColumn("Tipo de Pago");
-        modeloTabla.addColumn("Cantidad del Pago");
-        tablaPagos.setModel(modeloTabla);
-    } else {
-  
-        modeloTabla.setRowCount(0);
-    }
-
-    TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
-    List<TiposDePagos> TiposDePagos = TiposDePagoDAO.select();
-    
-    for (TiposDePagos tipoPago : TiposDePagos) {
-        Object[] fila = new Object[3];
-        fila[0] = tipoPago.getIdTipoPago();
-        fila[1] = tipoPago.getNombrePago();
-        fila[2] = tipoPago.getcantidadPago();
-        modeloTabla.addRow(fila);
-    }
+     DefaultTableModel modelo = (DefaultTableModel) tablaPagos.getModel();
+     modelo.setRowCount(0);
+     
+     TiposDePagoDAO tiposdepagoDAO = new TiposDePagoDAO();
+     List<TiposDePagos> tipopagos = tiposdepagoDAO.select();
+     
+     for (TiposDePagos tipopago: tipopagos){
+         Object[] fila = new Object[]{
+           tipopago.getIdTipoPago(),
+           tipopago.getNombrePago(),
+           tipopago.getcantidadPago(),
+         };
+         modelo.addRow(fila);
+     }
     }
 
     public void buscarTiposPagos() {
         TiposDePagos TiposDePagosAConsultar = new TiposDePagos();
-        TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
+        TiposDePagoDAO tiposdepagoDAO = new TiposDePagoDAO();
         TiposDePagosAConsultar.setIdTipoPago((txtbuscado.getText()));
-        TiposDePagosAConsultar = TiposDePagoDAO.query(TiposDePagosAConsultar);
+        TiposDePagosAConsultar = tiposdepagoDAO.query(TiposDePagosAConsultar);
         Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "ISO");
         txtIDpago.setText(TiposDePagosAConsultar.getIdTipoPago());
         txtNombrePago.setText(TiposDePagosAConsultar.getNombrePago());
@@ -72,10 +64,10 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
 
     
     public void eliminarTiposPagos(){
-      TiposDePagoDAO cursoDAO = new TiposDePagoDAO();
+      TiposDePagoDAO tipopagoDAO = new TiposDePagoDAO();
         TiposDePagos TiposDePagosAEliminar = new TiposDePagos();
         TiposDePagosAEliminar.setIdTipoPago(txtbuscado.getText());
-        cursoDAO.delete(TiposDePagosAEliminar);
+        tipopagoDAO.delete(TiposDePagosAEliminar);
         Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
     }
@@ -183,12 +175,7 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
         tablaPagos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ID del Pago", "Tipo de Pago", "Cantidad del Pago"
@@ -336,12 +323,12 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        TiposDePagoDAO TiposDePagoDAO = new TiposDePagoDAO();
+        TiposDePagoDAO tiposdepagoDAO = new TiposDePagoDAO();
         TiposDePagos tiposdepagoAActualizar = new TiposDePagos();
         tiposdepagoAActualizar.setIdTipoPago(txtbuscado.getText());
         tiposdepagoAActualizar.setNombrePago(txtNombrePago.getText());
         tiposdepagoAActualizar.setcantidadPago(txtCantidadPago.getText());
-        TiposDePagoDAO.update(tiposdepagoAActualizar);
+        tiposdepagoDAO.update(tiposdepagoAActualizar);
         Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -352,9 +339,6 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
         txtCantidadPago.setText("");
         txtbuscado.setText("");
         Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "CLN");
-        btnRegistrar.setEnabled(true);
-        btnModificar.setEnabled(true);
-        btnEliminar.setEnabled(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -386,7 +370,7 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
         try {
             conn = Conexion.getConnection();
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/reportes/rptBitacora3.jrxml");
+                    + "/src/main/java/reportes/rpBitacoraTiposDePagos.jrxml");
 	    print = JasperFillManager.fillReport(report, p, conn);
             JasperViewer view = new JasperViewer(print, false);
 	    view.setTitle("Reporte Tipos de Pagos");
