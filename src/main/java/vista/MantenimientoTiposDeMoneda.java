@@ -8,6 +8,8 @@
 package vista;
 
 import controlador.TiposDeMoneda;
+import controlador.clsBitacora;
+import controlador.clsUsuarioConectado;
 import modelo.TiposDeMonedaDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -31,7 +33,8 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
 
-    //int codigoAplicacion = 2000;
+    int codigoAplicacion = 3600;
+    clsBitacora Auditoria = new clsBitacora();
   
     public void llenadoDeCombos() {
        /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -90,10 +93,13 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
         lb = new javax.swing.JLabel();
         btnAyuda = new javax.swing.JButton();
         label6 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
         txtID = new javax.swing.JTextField();
         btnReporte = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaMonedas = new javax.swing.JTable();
+        txtbuscado = new javax.swing.JTextField();
+        label7 = new javax.swing.JLabel();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -164,6 +170,13 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label6.setText("Nombre de la moneda:");
 
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         txtID.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         txtID.setOpaque(false);
@@ -193,6 +206,9 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tablaMonedas);
 
+        label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label7.setText("Valor a buscar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,15 +235,22 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnAyuda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                            .addComponent(txtbuscado, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                                    .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -267,14 +290,17 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLimpiar)
                             .addComponent(btnAyuda)
-                            .addComponent(btnReporte)))
+                            .addComponent(btnReporte))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label7)
+                            .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
-
-        getAccessibleContext().setAccessibleName("Mantenimiento Tipos de moneda");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -283,8 +309,9 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         TiposDeMonedaDAO tiposDeMonedaDAO = new TiposDeMonedaDAO();
         TiposDeMoneda monedaAEliminar = new TiposDeMoneda();
+        monedaAEliminar.setIdMoneda(parseInt(txtbuscado.getText()));
         tiposDeMonedaDAO.delete(monedaAEliminar);
-
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
         //bitacora.ingresar(codigoAplicacion, usuarioRegistrado, "DEL");
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -295,7 +322,7 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
         monedaAInsertar.setIdMoneda(parseInt(txtID.getText()));
         monedaAInsertar.setNombreMoneda(txtNombreM.getText());
         monedaAInsertar.setValorMoneda(txtValor.getText());
-        
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");  
         tiposDeMonedaDAO.insert(monedaAInsertar);    
         llenadoDeTablas();
         //bitacora.ingresar(codigoAplicacion, usuarioRegistrado, "INS");       
@@ -303,7 +330,14 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        
+        TiposDeMonedaDAO tiposDeMonedaDAO = new TiposDeMonedaDAO();
+        TiposDeMoneda monedaAActualizar = new TiposDeMoneda();
+        monedaAActualizar.setIdMoneda(parseInt(txtID.getText()));
+        monedaAActualizar.setNombreMoneda(txtNombreM.getText());
+        monedaAActualizar.setValorMoneda(txtValor.getText());
+        tiposDeMonedaDAO.update(monedaAActualizar);
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
+        llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -324,6 +358,7 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
                         .getRuntime()
                         .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\ayudas\\AyudaTiposDeMoneda.chm");
                 p.waitFor();
+                Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "HELP");
             } else {
                 System.out.println("La ayuda no Fue encontrada");
             }
@@ -348,15 +383,28 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
             JasperViewer view = new JasperViewer(print, false);
 	    view.setTitle("Reporte Tipos de moneda");
             view.setVisible(true);
+            Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "RPT");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnReporteActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        TiposDeMoneda monedaAConsultar = new TiposDeMoneda();
+        TiposDeMonedaDAO tiposDeMonedaDAO = new TiposDeMonedaDAO();
+        monedaAConsultar.setIdMoneda(parseInt(txtbuscado.getText()));
+        monedaAConsultar = tiposDeMonedaDAO.query(monedaAConsultar);
+        txtID.setText(Integer.toString(monedaAConsultar.getIdMoneda()));
+        txtNombreM.setText(monedaAConsultar.getNombreMoneda());
+        txtValor.setText(monedaAConsultar.getValorMoneda());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
@@ -366,6 +414,7 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label5;
     private javax.swing.JLabel label6;
+    private javax.swing.JLabel label7;
     private javax.swing.JLabel lb;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
@@ -373,5 +422,6 @@ public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombreM;
     private javax.swing.JTextField txtValor;
+    private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables
 }
