@@ -35,38 +35,15 @@ public class MdiGeneral extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnuArchivo = new javax.swing.JMenu();
-        mnuArchivoAbrirSesion = new javax.swing.JMenuItem();
-        mnuArchivoCerrarSesion = new javax.swing.JMenuItem();
-        mnuCatalogos = new javax.swing.JMenu();
-        mnuCatalogosMantenimiento = new javax.swing.JMenu();
-        mnuCatalogosMantenimientosCursos = new javax.swing.JMenuItem();
-        mnuCatalogosMantenimientosAlumnos = new javax.swing.JMenuItem();
-        mnuCatalogosMantenimientosMaestros = new javax.swing.JMenuItem();
-
-        ManBanco = new javax.swing.JMenuItem();
-        mnuCatalogosMantenimientosTiposDePagos = new javax.swing.JMenuItem();
-        ManMoneda = new javax.swing.JMenuItem();
-
-
-        mnuCatalogosMantenimientosSecciones = new javax.swing.JMenuItem();
-        mnuCatalogosMantenimientosFacultades = new javax.swing.JMenuItem();
-        mnuCatalogosMantenimientosCarreras = new javax.swing.JMenuItem();
-
-        mnuProcesos = new javax.swing.JMenu();
-        mnuReportes = new javax.swing.JMenu();
-        mnuSeguridad = new javax.swing.JMenu();
-        mnuSeguridadBitacora = new javax.swing.JMenuItem();
-        mnuAyudas = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
-
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,128 +58,26 @@ public class MdiGeneral extends javax.swing.JFrame {
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
-        mnuArchivo.setText("Archivo");
+        jMenu1.setText("Archivo");
 
-        mnuArchivoAbrirSesion.setText("Abrir Sesion");
-        mnuArchivoAbrirSesion.addActionListener(new java.awt.event.ActionListener() {
+        jMenu3.setText("Mantenimientos");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuArchivoAbrirSesionActionPerformed(evt);
-            }
-        });
-        mnuArchivo.add(mnuArchivoAbrirSesion);
-
-        mnuArchivoCerrarSesion.setText("Cerrar Sesion");
-        mnuArchivo.add(mnuArchivoCerrarSesion);
-
-        jMenuBar1.add(mnuArchivo);
-
-        mnuCatalogos.setText("Catalogos");
-
-        mnuCatalogosMantenimiento.setText("Mantenimientos");
-        mnuCatalogosMantenimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientoActionPerformed(evt);
+                jMenu3ActionPerformed(evt);
             }
         });
 
-        mnuCatalogosMantenimientosCursos.setText("Mantenimiento Cursos");
-        mnuCatalogosMantenimientosCursos.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Mantenimiento Cursos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientosCursosActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosCursos);
+        jMenu3.add(jMenuItem3);
 
-        mnuCatalogosMantenimientosAlumnos.setText("Mantenimiento Alumnos");
-        mnuCatalogosMantenimientosAlumnos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientosAlumnosActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosAlumnos);
+        jMenu1.add(jMenu3);
 
-        mnuCatalogosMantenimientosMaestros.setText("Mantenimiento Maestros");
-        mnuCatalogosMantenimientosMaestros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientosMaestrosActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosMaestros);
-
-        ManBanco.setText("Mantenimiento Bancos");
-        ManBanco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManBancoActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(ManBanco);
-
-        mnuCatalogosMantenimientosTiposDePagos.setText("Mantenimiento TiposDePagos");
-        mnuCatalogosMantenimientosTiposDePagos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientosTiposDePagosActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosTiposDePagos);
-
-        ManMoneda.setText("Mantenimiento TipoDeMoneda");
-        ManMoneda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ManMonedaActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(ManMoneda);
-
-        mnuCatalogosMantenimientosSecciones.setText("Mantenimiento Secciones");
-        mnuCatalogosMantenimientosSecciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientosSeccionesActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosSecciones);
-
-        mnuCatalogosMantenimientosFacultades.setText("Mantenimiento Facultades");
-        mnuCatalogosMantenimientosFacultades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientosFacultadesActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosFacultades);
-
-        mnuCatalogosMantenimientosCarreras.setText("Mantenimiento Carreras");
-        mnuCatalogosMantenimientosCarreras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCatalogosMantenimientosCarrerasActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimiento.add(mnuCatalogosMantenimientosCarreras);
-
-
-        mnuCatalogos.add(mnuCatalogosMantenimiento);
-
-        jMenuBar1.add(mnuCatalogos);
-
-        mnuProcesos.setText("Procesos");
-        jMenuBar1.add(mnuProcesos);
-
-        mnuReportes.setText("Reportes");
-        jMenuBar1.add(mnuReportes);
-
-        mnuSeguridad.setText("Seguridad");
-
-        mnuSeguridadBitacora.setText("Consulta Bitacora");
-        mnuSeguridadBitacora.setName("mnuSeguridadBitacora"); // NOI18N
-        mnuSeguridadBitacora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuSeguridadBitacoraActionPerformed(evt);
-            }
-        });
-        mnuSeguridad.add(mnuSeguridadBitacora);
-
-        jMenuBar1.add(mnuSeguridad);
-
-        mnuAyudas.setText("Ayuda");
-        jMenuBar1.add(mnuAyudas);
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -220,108 +95,19 @@ public class MdiGeneral extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuCatalogosMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientoActionPerformed
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_mnuCatalogosMantenimientoActionPerformed
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
-    private void mnuCatalogosMantenimientosCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosCursosActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         MantenimientoCursos ventana = new MantenimientoCursos();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_mnuCatalogosMantenimientosCursosActionPerformed
-
-    private void mnuArchivoAbrirSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArchivoAbrirSesionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mnuArchivoAbrirSesionActionPerformed
-
-    private void mnuCatalogosMantenimientosMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosMaestrosActionPerformed
-        // TODO add your handling code here:
-        MantenimientoMaestros ventana1 = new MantenimientoMaestros();
-        jDesktopPane1.add(ventana1);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana1.getSize();
-        ventana1.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_mnuCatalogosMantenimientosMaestrosActionPerformed
-
-    private void mnuCatalogosMantenimientosAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosAlumnosActionPerformed
-        // TODO add your handling code here:
-        MantenimientoAlumnos ventana = new MantenimientoAlumnos();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_mnuCatalogosMantenimientosAlumnosActionPerformed
-
-    private void mnuSeguridadBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSeguridadBitacoraActionPerformed
-        // TODO add your handling code here:
-        frmMantenimientoBitacora ventana = new frmMantenimientoBitacora();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_mnuSeguridadBitacoraActionPerformed
-
-
-    private void mnuCatalogosMantenimientosTiposDePagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosTiposDePagosActionPerformed
-        MantenimientoPagos ventana = new MantenimientoPagos();
-
-
-    private void mnuCatalogosMantenimientosSeccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosSeccionesActionPerformed
-        MantenimientoSecciones ventana = new MantenimientoSecciones();
-
-
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-
-    }//GEN-LAST:event_mnuCatalogosMantenimientosTiposDePagosActionPerformed
-
-    private void ManBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManBancoActionPerformed
-        // TODO add your handling code here:
-        MantenimientoBancos ventana = new MantenimientoBancos();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_ManBancoActionPerformed
-
-    private void ManMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManMonedaActionPerformed
-        // TODO add your handling code here:
-        MantenimientoTiposDeMoneda ventana = new MantenimientoTiposDeMoneda();
-
-
-
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mnuCatalogosMantenimientosSeccionesActionPerformed
-
-    private void mnuCatalogosMantenimientosFacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosFacultadesActionPerformed
-        MantenimientoFacultades ventana1 = new MantenimientoFacultades();
-        jDesktopPane1.add(ventana1);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana1.getSize();
-        ventana1.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_mnuCatalogosMantenimientosFacultadesActionPerformed
-
-    private void mnuCatalogosMantenimientosCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosCarrerasActionPerformed
-        // TODO add your handling code here:
-        MantenimientoCarreras ventana = new MantenimientoCarreras();
-
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-
-    }//GEN-LAST:event_ManMonedaActionPerformed
-
-    }//GEN-LAST:event_mnuCatalogosMantenimientosCarrerasActionPerformed
-
-
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,34 +145,12 @@ public class MdiGeneral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem ManBanco;
-    private javax.swing.JMenuItem ManMoneda;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenu mnuArchivo;
-    private javax.swing.JMenuItem mnuArchivoAbrirSesion;
-    private javax.swing.JMenuItem mnuArchivoCerrarSesion;
-    private javax.swing.JMenu mnuAyudas;
-    private javax.swing.JMenu mnuCatalogos;
-    private javax.swing.JMenu mnuCatalogosMantenimiento;
-    private javax.swing.JMenuItem mnuCatalogosMantenimientosAlumnos;
-
-    private javax.swing.JMenuItem mnuCatalogosMantenimientosCarreras;
-
-    private javax.swing.JMenuItem mnuCatalogosMantenimientosCursos;
-    private javax.swing.JMenuItem mnuCatalogosMantenimientosFacultades;
-    private javax.swing.JMenuItem mnuCatalogosMantenimientosMaestros;
-
-    private javax.swing.JMenuItem mnuCatalogosMantenimientosTiposDePagos;
-
-    private javax.swing.JMenuItem mnuCatalogosMantenimientosSecciones;
-
-    private javax.swing.JMenu mnuProcesos;
-    private javax.swing.JMenu mnuReportes;
-    private javax.swing.JMenu mnuSeguridad;
-    private javax.swing.JMenuItem mnuSeguridadBitacora;
+    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }
