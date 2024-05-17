@@ -382,46 +382,9 @@ public class MantenimientoCiclos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-<<<<<<< HEAD
-<<<<<<< HEAD
-              Connection conn = null;        
-=======
-        // TODO add your handling code here:
-        Connection conn = null;        
->>>>>>> creacion_de_Reporte_Ciclos
-=======
-        // TODO add your handling code here:
-        Connection conn = null;        
->>>>>>> creacion_de_Reporte_Ciclos
-        Map p = new HashMap();
-        JasperReport report;
-        JasperPrint print;
-
-        try {
-            conn = Conexion.getConnection();
-            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/reportes/rptTabla_Ciclos.jrxml");
-	    print = JasperFillManager.fillReport(report, p, conn);
-            JasperViewer view = new JasperViewer(print, false);
-	    view.setTitle("Reporte Ciclos");
-            view.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
 
         // TODO add your handling code here:
-=======
-        
-        
->>>>>>> creacion_de_Reporte_Ciclos
-=======
-        
-        
->>>>>>> creacion_de_Reporte_Ciclos
+
     }//GEN-LAST:event_btnReporteActionPerformed
 
 
