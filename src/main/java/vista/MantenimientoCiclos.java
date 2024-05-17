@@ -383,7 +383,12 @@ public class MantenimientoCiclos extends javax.swing.JInternalFrame {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
 <<<<<<< HEAD
+<<<<<<< HEAD
               Connection conn = null;        
+=======
+        // TODO add your handling code here:
+        Connection conn = null;        
+>>>>>>> creacion_de_Reporte_Ciclos
 =======
         // TODO add your handling code here:
         Connection conn = null;        
@@ -404,10 +409,15 @@ public class MantenimientoCiclos extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
         // TODO add your handling code here:
+=======
+        
+        
+>>>>>>> creacion_de_Reporte_Ciclos
 =======
         
         

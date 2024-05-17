@@ -220,6 +220,9 @@ public class MdiGeneral extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_mnuCatalogosMantenimientosCiclosActionPerformed
+<<<<<<< HEAD
+>>>>>>> creacion_de_Reporte_Ciclos
+=======
 >>>>>>> creacion_de_Reporte_Ciclos
 
     /**
