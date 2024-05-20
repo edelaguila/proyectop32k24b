@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package vista;
+//Kenph Luna 9959-22-6326
 
 import modelo.UsuarioDAO;
 import controlador.Usuario;
+import controlador.ActaEvaluacion;
+import modelo.ActaEvaluacionDAO;
 import controlador.clsUsuarioConectado;
 import java.awt.HeadlessException;
 import controlador.clsBitacora;
@@ -23,10 +26,11 @@ public class Acta_Evaluacion extends javax.swing.JFrame {
      * Creates new form Login
      */
     
+    int codigoAplicacion = 4030;
     public Acta_Evaluacion() {
         initComponents();
         setLocationRelativeTo(null);
-        setSize(300, 200);
+        setSize(380, 350);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -42,28 +46,32 @@ public class Acta_Evaluacion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtMaestros = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        txtContraseña = new javax.swing.JPasswordField();
+        txtCurso = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtCarrera = new javax.swing.JTextField();
+        txtSeccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Seguridad del Sistema");
+        jLabel1.setText("Actas de Evaluacion");
 
-        jLabel2.setText("Usuario");
+        jLabel2.setText("Maestro");
 
-        jLabel3.setText("Contraseña");
+        jLabel3.setText("Carrera");
 
-        txtUsuario.setName("txtUsuario"); // NOI18N
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtMaestros.setName("txtMaestros"); // NOI18N
+        txtMaestros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtMaestrosActionPerformed(evt);
             }
         });
 
-        btnAceptar.setLabel("Aceptar");
+        btnAceptar.setText("Ingresar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -77,29 +85,62 @@ public class Acta_Evaluacion extends javax.swing.JFrame {
             }
         });
 
+        txtCurso.setName("txtUsuario"); // NOI18N
+        txtCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCursoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Curso");
+
+        jLabel5.setText("Seccion");
+
+        txtCarrera.setName("txtMaestros"); // NOI18N
+        txtCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCarreraActionPerformed(evt);
+            }
+        });
+
+        txtSeccion.setName("txtMaestros"); // NOI18N
+        txtSeccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSeccionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(75, 75, 75))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAceptar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addComponent(txtUsuario)
-                            .addComponent(txtContraseña))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMaestros, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,59 +150,72 @@ public class Acta_Evaluacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtMaestros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(jButton2))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaestrosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtMaestrosActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
 
-        if (txtUsuario.getText().trim().isEmpty() || txtContraseña.getText().trim().isEmpty()) {
+        if (txtMaestros.getText().trim().isEmpty() || txtCarrera.getText().trim().isEmpty() || txtCurso.getText().trim().isEmpty() || txtSeccion.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "NO PUEDEN HABER CAMPOS VACIOS", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                Usuario usuarioAConsultar = new Usuario();
-                UsuarioDAO usuarioDAO = new UsuarioDAO();
-                usuarioAConsultar.setUsername(txtUsuario.getText().trim());
-                // Recuperación de información a través de otro objeto
-                usuarioAConsultar = usuarioDAO.query(usuarioAConsultar);
+                
+                ActaEvaluacion maestroAConsultar = new ActaEvaluacion();
+                ActaEvaluacionDAO maestroDAO = new ActaEvaluacionDAO();
+                maestroAConsultar.setCodigo_maestro(txtMaestros.getText().trim());
+                maestroAConsultar = maestroDAO.query(maestroAConsultar);
 
-                if (txtContraseña.getText().equals(usuarioAConsultar.getPassword()) && txtUsuario.getText().equals(usuarioAConsultar.getUsername())) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido al SISTEMA\n", "Mensaje de bienvenida", JOptionPane.INFORMATION_MESSAGE);
+                if (txtCarrera.getText().equals(maestroAConsultar.getCodigo_carrera()) && txtMaestros.getText().equals(maestroAConsultar.getCodigo_maestro()) && txtSeccion.getText().equals(maestroAConsultar.getCodigo_seccion()) && txtCurso.getText().equals(maestroAConsultar.getCodigo_curso())) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido al Ingreso de Notas\n", "Datos Validados", JOptionPane.INFORMATION_MESSAGE);
                     // registrando usuario conectado
-                    clsUsuarioConectado usuarioRegistrado = new clsUsuarioConectado();
-                    usuarioRegistrado.setIdUsuario(usuarioAConsultar.getId_usuario());
-                    usuarioRegistrado.setNombreUsuario(usuarioAConsultar.getUsername());
+                   // clsUsuarioConectado usuarioRegistrado = new clsUsuarioConectado();
+                   // usuarioRegistrado.setIdUsuario(maestroAConsultar.getId_usuario());
+                   // usuarioRegistrado.setNombreUsuario(maestroAConsultar.getUsername());
                     clsBitacora Auditoria = new clsBitacora();
-                    Auditoria.setIngresarBitacora(usuarioAConsultar.getId_usuario(), 1000, "LGI");
-                    MdiGeneral menuGeneral = new MdiGeneral();
-                    menuGeneral.setVisible(true);
+                    Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "LOGAUD");
+                    
+                    ProcesoIngresoNotas ventana = new ProcesoIngresoNotas();
+                    ventana.setVisible(true);
                     this.dispose();
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "ERROR AL ENCONTRAR USUARIO o CONTRASEÑA", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    txtContraseña.setText("");
-                    txtUsuario.setText("");
+                    JOptionPane.showMessageDialog(this, "ERROR, DATOS INCORRECTOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    txtCarrera.setText("");
+                    txtMaestros.setText("");
+                    txtCurso.setText("");
+                    txtSeccion.setText("");
                 }
             } catch (HeadlessException e) {
-                JOptionPane.showMessageDialog(this, "ERROR AL ENCONTRAR USUARIO o CONTRASEÑA", "ERROR", JOptionPane.ERROR_MESSAGE);
-                txtContraseña.setText("");
-                txtUsuario.setText("");
+                JOptionPane.showMessageDialog(this, "ERROR DATOS INCORRECTOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+                txtCarrera.setText("");
+                    txtMaestros.setText("");
+                    txtCurso.setText("");
+                    txtSeccion.setText("");
             }
         }
 
@@ -171,6 +225,18 @@ public class Acta_Evaluacion extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCursoActionPerformed
+
+    private void txtCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCarreraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCarreraActionPerformed
+
+    private void txtSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSeccionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +280,11 @@ public class Acta_Evaluacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField txtContraseña;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtCarrera;
+    private javax.swing.JTextField txtCurso;
+    private javax.swing.JTextField txtMaestros;
+    private javax.swing.JTextField txtSeccion;
     // End of variables declaration//GEN-END:variables
 }
