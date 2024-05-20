@@ -9,3 +9,17 @@ CREATE TABLE IF NOT EXISTS actaevaluacion (
     FOREIGN KEY (codigo_seccion) REFERENCES secciones(codigo_seccion),
     FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS ingresonotas (
+	cod_acta VARCHAR(20) NOT NULL,
+	not_semestre VARCHAR(20) NOT NULL,
+    not_año VARCHAR(20) NOT NULL,
+    carnet_alumno VARCHAR(15) NOT NULL,
+	not_parcial1 INT(20) NOT NULL,
+    not_parcial2 INT(20) NOT NULL,
+    not_examenfinal INT(20) NOT NULL,
+    not_zonatareas INT(20) NOT NULL,
+    not_totalpuntos INT(20) NOT NULL,
+    PRIMARY KEY (cod_acta),
+    FOREIGN KEY (carnet_alumno) REFERENCES alumnos(carnet_alumno)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;

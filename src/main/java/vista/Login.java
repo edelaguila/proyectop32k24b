@@ -149,8 +149,10 @@ public class Login extends javax.swing.JFrame {
                     usuarioRegistrado.setNombreUsuario(usuarioAConsultar.getUsername());
                     clsBitacora Auditoria = new clsBitacora();
                     Auditoria.setIngresarBitacora(usuarioAConsultar.getId_usuario(), 1000, "LGI");
-                    MdiGeneral menuGeneral = new MdiGeneral();
-                    menuGeneral.setVisible(true);
+                    //MdiGeneral menuGeneral = new MdiGeneral();
+                    //menuGeneral.setVisible(true);
+                    MDIPrueba ventana = new MDIPrueba();
+                    ventana.setVisible(true);
                     this.dispose();
 
                 } else {
