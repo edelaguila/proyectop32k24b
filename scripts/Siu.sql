@@ -177,7 +177,6 @@ CREATE TABLE tiposdemoneda
 (
   id_moneda INT NOT NULL AUTO_INCREMENT,
   nombre_moneda VARCHAR(45),
-  valor_moneda VARCHAR(45),
   PRIMARY KEY (id_moneda)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 -- -----------------------------------------------------
@@ -196,3 +195,30 @@ CREATE TABLE Tesoreria (
     FOREIGN KEY (id_tipo_pago) REFERENCES TiposDePagos(id_tipo_pago),
     FOREIGN KEY (id_moneda) REFERENCES tiposdemoneda(id_moneda)
 )ENGINE = InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS aplicacion(
+  aplid int NOT NULL AUTO_INCREMENT,
+    aplnombre VARCHAR(50),
+    aplestatus VARCHAR(50),
+    PRIMARY KEY (aplid)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+-- Creanción de la Bitacora de seguridad
+CREATE TABLE IF NOT EXISTS bitacora (
+  bitid int auto_increment PRIMARY KEY,
+    bitfecha datetime NULL,
+    bitaccion VARCHAR(10) NOT NULL,
+    bitip VARCHAR(25) NOT NULL,
+    bitnombrepc VARCHAR(50) NOT NULL,
+    usuid INT NOT NULL,
+    aplid INT NOT NULL,
+    FOREIGN KEY (aplid) references aplicacion (aplid),
+    FOREIGN KEY (usuid) references usuario (id_usuario)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+USE siu;
+CREATE TABLE IF NOT EXISTS boletas (
+    codigo_maestro VARCHAR(50),
+    tipo_de_pago VARCHAR(50),
+    semestre VARCHAR(50),
+    año VARCHAR(4),
+    mes VARCHAR(20),
+    codigo_boleta VARCHAR(50)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
