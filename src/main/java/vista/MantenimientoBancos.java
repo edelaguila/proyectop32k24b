@@ -370,7 +370,7 @@ public class MantenimientoBancos extends javax.swing.JInternalFrame {
         try {
             conn = Conexion.getConnection();
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/reportes/rptBitacoraBancos.jrxml");
+                    + "/src/main/java/reportes/reportBancos.jrxml");
 	    print = JasperFillManager.fillReport(report, p, conn);
             JasperViewer view = new JasperViewer(print, false);
 	    view.setTitle("Reporte Prueba");
