@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="685ae1e5-1173-4a12-a697-081e01b5ee77">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT m.*, b.codigo_boleta
+FROM maestros m
+LEFT JOIN boletas b ON m.codigo_maestro = b.codigo_maestro;]]>
+	</queryString>
+	<field name="codigo_maestro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre_maestro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion_maestro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono_maetro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email_maestro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estatus_maestro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo_boleta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="104" height="20" uuid="cad2ddee-00d1-4126-8ecb-cb5476db0db7"/>
+				<text><![CDATA[codigo_maestro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="2" width="104" height="20" uuid="7a83b4db-49de-41da-b7f6-a35b87a5da4f"/>
+				<text><![CDATA[nombre_maestro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="2" width="54" height="20" uuid="43478ecb-9b31-4231-b42a-ce7b15e7456e"/>
+				<text><![CDATA[estatus_maestro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="2" width="102" height="20" uuid="303ddde8-8842-403a-8056-7cd6a176fed6"/>
+				<text><![CDATA[email_maestro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="2" width="111" height="20" uuid="00769e90-672c-4ded-8e23-709729a80d1e"/>
+				<text><![CDATA[codigo_boleta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="104" height="20" uuid="0479be8a-6f02-4ef2-b0fa-147eca550685"/>
+				<textFieldExpression><![CDATA[$F{codigo_maestro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="10" width="104" height="20" uuid="f2c79cbc-6ad2-4c3a-80de-173ae3a82152"/>
+				<textFieldExpression><![CDATA[$F{nombre_maestro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="10" width="54" height="20" uuid="1e7000e7-e7d0-4fa5-aaa4-c0e9338e2817"/>
+				<textFieldExpression><![CDATA[$F{estatus_maestro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="10" width="102" height="20" uuid="9ac39ce8-fda5-49c7-843f-c25be00ccd40"/>
+				<textFieldExpression><![CDATA[$F{email_maestro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="10" width="111" height="20" uuid="21909948-d807-4be8-a3f4-5163699a8ad3"/>
+				<textFieldExpression><![CDATA[$F{codigo_boleta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
