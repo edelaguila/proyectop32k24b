@@ -174,17 +174,33 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
      JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
     return;
 }
-      String codigoBoleta = "BOL-" + (int)(Math.random() * 1000000);
-      
-      Boletas2 boleta2 = new Boletas2(CodigoMaestro, Jornada, Seccion, Semestre, Año, IDBoleta);
-      
-      Boletas2DAO boletas2DAO = new Boletas2DAO();
-    int rowsInserted = boletas2DAO.insert(boleta2);
-    if (rowsInserted > 0) {
+     JTextField codigoBoletaField = new JTextField();
+Object[] message = {
+    "Ingrese el número de la boleta:", codigoBoletaField
+};
+
+int option = JOptionPane.showConfirmDialog(this, message, "Número de Boleta", JOptionPane.OK_CANCEL_OPTION);
+if (option == JOptionPane.OK_OPTION) {
+    String codigoBoleta = codigoBoletaField.getText();
+    if (codigoBoleta.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Debe ingresar el número de la boleta.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+    }
+
+    String estadoTransaccion = JOptionPane.showInputDialog(this, "Ingrese el estado de la transacción (Pago recibido/Pago no recibido):");
+    if (estadoTransaccion == null || estadoTransaccion.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Debe ingresar el estado de la transacción.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+    }
+
+    
+
+    if (estadoTransaccion.equals("Pago recibido")) {
         JOptionPane.showMessageDialog(this, "Boleta generada exitosamente. Código de boleta: " + codigoBoleta, "Éxito", JOptionPane.INFORMATION_MESSAGE);
     } else {
-        JOptionPane.showMessageDialog(this, "Error al generar la boleta.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Error al generar la boleta. Profesor insolvente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
      
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
