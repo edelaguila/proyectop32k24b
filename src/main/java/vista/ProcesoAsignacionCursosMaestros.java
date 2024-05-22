@@ -162,7 +162,7 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-     String CodigoMaestro = txtCodigoMaestro.getText();
+      String CodigoMaestro = txtCodigoMaestro.getText();
       String Semestre = cmbSemestre.getSelectedItem().toString();
       String Jornada = txtJornada.getText();
       String Seccion = txtSeccion.getText();

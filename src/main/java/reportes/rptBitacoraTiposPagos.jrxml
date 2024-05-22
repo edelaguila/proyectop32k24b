@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c938569d-d71e-42cd-977f-ee1c259e0ea1">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4adfdba0-d9d4-49b3-a94d-4a21d0c24b63">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT*FROM bitacora]]>
+		<![CDATA[SELECT * FROM bitacora]]>
 	</queryString>
 	<field name="bitid" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -28,22 +28,17 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
-		<band splitType="Stretch">
-			<image>
-				<reportElement x="159" y="84" width="296" height="120" uuid="4d4d7721-d4c4-4be4-9588-4b9b4e97428c"/>
-				<imageExpression><![CDATA["C:\\Users\\Joseg\\OneDrive\\Desktop\\Facturas de Universidad\\mariano-galves-sin-fondo-1.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<textField>
-				<reportElement x="181" y="25" width="185" height="24" uuid="dced86bf-5302-4a3b-83b6-fb7552350adc"/>
+			<staticText>
+				<reportElement x="188" y="29" width="186" height="27" uuid="abb75ace-8903-47ee-87a8-7de50c345d63"/>
 				<textElement>
-					<font size="16"/>
+					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[Reportes Tipos De Pagos]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Reportes de Tipos de Pagos]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -52,48 +47,48 @@
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="14" y="0" width="61" height="20" uuid="b617b4c3-cda6-4cdc-b07f-55fa9a0dc1e8"/>
+				<reportElement x="0" y="27" width="100" height="20" uuid="8deab71d-36bd-441c-9d12-7b67799e78bc"/>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="131" y="0" width="50" height="20" uuid="b745384d-eba4-443b-b96c-de95b5d74ff7"/>
-				<text><![CDATA[Bitacora]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="218" y="0" width="100" height="20" uuid="edc2d2d4-42f5-4568-941b-80daaa72e47e"/>
+				<reportElement x="239" y="27" width="100" height="20" uuid="dee76eec-3d33-405c-b60b-2804d55322c1"/>
 				<text><![CDATA[IP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="328" y="0" width="100" height="20" uuid="f30e949b-7526-4d96-9bf2-b7eaa0f52ef6"/>
+				<reportElement x="339" y="27" width="100" height="20" uuid="2d8e0d8e-9954-475e-b506-756a7455b1a8"/>
 				<text><![CDATA[Nombre de la consola]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="455" y="0" width="100" height="20" uuid="b0f98d77-ff86-4975-abfd-bac76764a99c"/>
+				<reportElement x="455" y="27" width="100" height="20" uuid="37cc3286-3ced-4761-bc44-b7a40eb8d721"/>
 				<text><![CDATA[Usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="27" width="100" height="20" uuid="031ca333-2b34-48f0-bfb0-69c4427f399f"/>
+				<text><![CDATA[Bitácora]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="17" width="100" height="20" uuid="1e58193a-6327-477d-8513-caf0e33f6ca0"/>
+				<reportElement x="0" y="16" width="100" height="20" uuid="b6ad1296-5d53-44cc-ba28-0a9eae460522"/>
 				<textFieldExpression><![CDATA[""+$F{bitfecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="118" y="17" width="63" height="20" uuid="c3ae8a4b-278d-4395-aed6-eb9184d038c1"/>
-				<textFieldExpression><![CDATA[$F{bitaccion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="218" y="17" width="100" height="20" uuid="87c1f406-6b76-48d5-8412-b568f6f53a4d"/>
+				<reportElement x="239" y="16" width="100" height="20" uuid="25918ae8-f07c-48bc-873a-f6f7c5dd99cb"/>
 				<textFieldExpression><![CDATA[$F{bitip}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="328" y="17" width="100" height="20" uuid="37c21d92-1966-4c2b-938b-acbe7bb515bb"/>
+				<reportElement x="339" y="16" width="100" height="20" uuid="82ffda85-4546-4840-9ffd-a386556585be"/>
 				<textFieldExpression><![CDATA[$F{bitnombrepc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="455" y="17" width="100" height="20" uuid="37a72ffe-ca77-4e7c-91dd-91a3b8b003bc"/>
+				<reportElement x="455" y="16" width="100" height="20" uuid="a0ca124b-e84e-40fa-8e75-fda558c38d95"/>
 				<textFieldExpression><![CDATA[$F{usuid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="16" width="100" height="20" uuid="ee983b7a-074f-47e2-9e1d-e06bd0bebc2f"/>
+				<textFieldExpression><![CDATA[$F{bitaccion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
