@@ -29,7 +29,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author visitante
+ * @author Kevin
  */
 public class MantenimientoTiposDeMoneda extends javax.swing.JInternalFrame {
 

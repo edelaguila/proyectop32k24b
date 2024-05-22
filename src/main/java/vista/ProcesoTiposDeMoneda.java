@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.Boletas;
 import controlador.TesoreriaP;
 import controlador.TiposDeMoneda;
 
@@ -21,10 +22,11 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import modelo.BoletasDAO;
 import modelo.Conexion;
+import modelo.ProcesoTiposDeMonedasDAO;
 import modelo.TiposDeMonedaDAO;
 
-import modelo.TiposDePagoDAO;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -56,16 +58,30 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
     }
     
     public void buscarTotal(){
-        TiposDePagos TiposDePagosAConsultar = new TiposDePagos();
-        TiposDePagoDAO tiposdepagoDAO = new TiposDePagoDAO();
+        //Se busca la boleta ingresada
+        Boletas boletaAConsultar = new Boletas();
+        BoletasDAO boletasDAO = new BoletasDAO();       
+        boletaAConsultar.setCodigoBoleta(txtNBoleta.getText());
+        boletaAConsultar = boletasDAO.query(boletaAConsultar);
         
-        TiposDePagosAConsultar.setIdTipoPago(txtNBoleta.getText());
-        TiposDePagosAConsultar = tiposdepagoDAO.query(TiposDePagosAConsultar);
+        //Se busca el tipo de pago para calcular el monto a pagar
+        TiposDePagos TiposDePagosAConsultar = new TiposDePagos();
+        ProcesoTiposDeMonedasDAO procesotiposdepagoDAO = new ProcesoTiposDeMonedasDAO();
+        TiposDePagosAConsultar.setNombrePago(boletaAConsultar.getTipoDePago());
+        TiposDePagosAConsultar = procesotiposdepagoDAO.query(TiposDePagosAConsultar);
+        
+        //Se busca la moneda más adecuada para el pago
         TiposDeMoneda monedaAConsultar = new TiposDeMoneda();
         TiposDeMonedaDAO tiposDeMonedaDAO = new TiposDeMonedaDAO();
+        monedaAConsultar.setIdMoneda(1);
+        monedaAConsultar = tiposDeMonedaDAO.query(monedaAConsultar);
         
-        //lbTotal.setText(TiposDePagosAConsultar.getcantidadPago() + " " + TiposDePagosAConsultar.getNombreMoneda());
-        lbTotal.setText("700 Quetzales");
+        // Verificamos si el valor es null
+        if (TiposDePagosAConsultar.getcantidadPago() == null) {
+            lbTotal.setText("0");
+        } else {
+            lbTotal.setText(TiposDePagosAConsultar.getcantidadPago() + " " + monedaAConsultar.getNombreMoneda());
+        } 
     }
 
     /**

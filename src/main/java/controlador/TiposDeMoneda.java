@@ -49,6 +49,6 @@ public class TiposDeMoneda {
 
     @Override
     public String toString() {
-        return "TiposDeMoneda{" + "id_moneda=" + id_moneda + ", nombre_moneda=" + nombre_moneda + ", nombre_moneda=" + valor_moneda +'}';
+        return "TiposDeMoneda{" + "id_moneda=" + id_moneda + ", nombre_moneda=" + nombre_moneda + ", valor_moneda=" + valor_moneda +'}';
     }
 }

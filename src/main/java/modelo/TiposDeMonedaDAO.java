@@ -89,8 +89,8 @@ public class TiposDeMonedaDAO {
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setString(1, tipoMoneda.getNombreMoneda());
-            stmt.setInt(2, tipoMoneda.getIdMoneda());
-            stmt.setString(3, tipoMoneda.getValorMoneda());
+            stmt.setString(2, tipoMoneda.getValorMoneda());
+            stmt.setInt   (3, tipoMoneda.getIdMoneda());
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
@@ -138,6 +138,7 @@ public class TiposDeMonedaDAO {
             rs = stmt.executeQuery();
             if (rs.next()) {
                 tipoMoneda.setNombreMoneda(rs.getString("nombre_moneda"));
+                tipoMoneda.setValorMoneda(rs.getString("valor_moneda"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
