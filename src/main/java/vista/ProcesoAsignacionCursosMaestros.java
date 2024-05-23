@@ -11,12 +11,118 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import controlador.Boletas2;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import modelo.Boletas2DAO;
 import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame {
      int codigoAplicacion = 3456;
+    public class AsignacionCursos extends JFrame {
+    private JTable tablaCursoAsignar;
+    private JTable tablaCursoAsignada;
+    private JButton botonPasarDerecha;
+    private JButton botonPasarIzquierda;
+    private JButton botonGenerar;
+    private DefaultTableModel modeloAsignar;
+    private DefaultTableModel modeloAsignada;
+    
+      private void mostrarReporte(String reporte) {
+        JTextArea textArea = new JTextArea(reporte);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(400, 300));
+        JOptionPane.showMessageDialog(this, scrollPane, "Reporte de Cursos", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+       public AsignacionCursos() {
+        // Configuración de la ventana
+        setTitle("Gestión de Cursos");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Inicialización de modelos de tabla
+        modeloAsignar = new DefaultTableModel(new Object[]{"Cursos"}, 0);
+        modeloAsignada = new DefaultTableModel(new Object[]{"Cursos"}, 0);
+
+        // Llenar tablaCursoAsignar con datos de ejemplo
+        modeloAsignar.addRow(new Object[]{"Programación III"});
+        modeloAsignar.addRow(new Object[]{"Metódos Númericos"});
+        modeloAsignar.addRow(new Object[]{"Electrónica Analógica"});
+        modeloAsignar.addRow(new Object[]{"Emprendedores de Negocios"});
+        modeloAsignar.addRow(new Object[]{"Estadísticas II"});
+        modeloAsignar.addRow(new Object[]{"Física I"});
+        modeloAsignar.addRow(new Object[]{"Física II"});
+        modeloAsignar.addRow(new Object[]{"Lógica en Sistemas"});
+        modeloAsignar.addRow(new Object[]{"Programación I"});
+        modeloAsignar.addRow(new Object[]{"Programación II"});
+
+        // Inicialización de tablas
+        tablaCursoAsignar = new JTable(modeloAsignar);
+        tablaCursoAsignada = new JTable(modeloAsignada);
+
+        // Inicialización de botones
+        botonPasarDerecha = new JButton("🡪");
+        botonPasarIzquierda = new JButton("🡨");
+        botonGenerar = new JButton("Generar");
+
+        // Panel para los botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
+        panelBotones.add(botonPasarDerecha);
+        panelBotones.add(botonPasarIzquierda);
+        panelBotones.add(botonGenerar);
+
+        // Añadir componentes a la ventana
+        add(new JScrollPane(tablaCursoAsignar), BorderLayout.WEST);
+        add(panelBotones, BorderLayout.CENTER);
+        add(new JScrollPane(tablaCursoAsignada), BorderLayout.EAST);
+
+        // Acción del botón de pasar a la derecha
+        botonPasarDerecha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tablaCursoAsignar.getSelectedRow();
+                if (selectedRow != -1) {
+                    Object curso = modeloAsignar.getValueAt(selectedRow, 0);
+                    modeloAsignar.removeRow(selectedRow);
+                    modeloAsignada.addRow(new Object[]{curso});
+                }
+            }
+        });
+
+        // Acción del botón de pasar a la izquierda
+        botonPasarIzquierda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tablaCursoAsignada.getSelectedRow();
+                if (selectedRow != -1) {
+                    Object curso = modeloAsignada.getValueAt(selectedRow, 0);
+                    modeloAsignada.removeRow(selectedRow);
+                    modeloAsignar.addRow(new Object[]{curso});
+                }
+            }
+        });
+        botonGenerar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+              StringBuilder reporte = new StringBuilder("Reporte de Cursos Asignados:\n\n");
+        for (int i = 0; i < modeloAsignada.getRowCount(); i++) {
+            reporte.append(modeloAsignada.getValueAt(i, 0)).append("\n");
+        }
+        mostrarReporte(reporte.toString());
+    }
+            
+            
+        });
+        
+    }
+
+    
+}
     public ProcesoAsignacionCursosMaestros() {
         initComponents();
     }
@@ -178,7 +284,6 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
 Object[] message = {
     "Ingrese el número de la boleta:", codigoBoletaField
 };
-
 int option = JOptionPane.showConfirmDialog(this, message, "Número de Boleta", JOptionPane.OK_CANCEL_OPTION);
 if (option == JOptionPane.OK_OPTION) {
     String codigoBoleta = codigoBoletaField.getText();
@@ -187,21 +292,14 @@ if (option == JOptionPane.OK_OPTION) {
         return; 
     }
 
-    String estadoTransaccion = JOptionPane.showInputDialog(this, "Ingrese el estado de la transacción (Pago recibido/Pago no recibido):");
-    if (estadoTransaccion == null || estadoTransaccion.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Debe ingresar el estado de la transacción.", "Error", JOptionPane.ERROR_MESSAGE);
-        return; 
+    if (codigoBoleta.equals(txtCodigoBoleta.getText())) {
+        JOptionPane.showMessageDialog(this, "Boleta Verificada exitosamente. Código de boleta: " + codigoBoleta, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+         new AsignacionCursos().setVisible(true);
+        
     }
-
-    
-
-    if (estadoTransaccion.equals("Pago recibido")) {
-        JOptionPane.showMessageDialog(this, "Boleta generada exitosamente. Código de boleta: " + codigoBoleta, "Éxito", JOptionPane.INFORMATION_MESSAGE);
     } else {
-        JOptionPane.showMessageDialog(this, "Error al generar la boleta. Profesor insolvente.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}
-     
+        JOptionPane.showMessageDialog(this, "Error al Verificar la boleta. Profesor insolvente.", "Error", JOptionPane.ERROR_MESSAGE);
+    }     
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void cmbSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSemestreActionPerformed

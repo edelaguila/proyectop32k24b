@@ -8,7 +8,9 @@ vista\MantenimientoSecciones$9.class
 vista\MantenimientoTiposDeMoneda$8.class
 vista\MantenimientoCursos$4.class
 vista\MdiGeneral.class
+vista\ProcesoAsignacionCursosAMaestros.class
 vista\MantenimientoMaestros$1.class
+vista\ProcesoAsignacionCursosMaestros$AsignacionCursos$1.class
 controlador\Ciclos.class
 vista\MantenimientoCiclos$7.class
 modelo\TiposDePagoDAO.class
@@ -63,6 +65,7 @@ vista\ProcesosTiposDePagos.class
 vista\MdiGeneral$5.class
 vista\Login$3.class
 vista\MantenimientoSecciones$1.class
+vista\ProcesoAsignacionCursosAMaestros$2.class
 modelo\MaestrosDAO.class
 modelo\CiclosDAO.class
 vista\MantenimientoFacultades$2.class
@@ -75,6 +78,7 @@ vista\MantenimientoCiclos$6.class
 vista\MantenimientoTiposDeMoneda$4.class
 modelo\AlumnosDAO.class
 vista\MantenimientoSecciones$8.class
+vista\ProcesoAsignacionCursosAMaestros$1.class
 controlador\Empleado.class
 vista\ProcesoTiposDeMoneda$3.class
 vista\ProcesosTiposDePagos$1.class
@@ -88,6 +92,7 @@ vista\ProcesoTesoreria.class
 vista\Login$4.class
 vista\MantenimientoAlumnos$5.class
 vista\MantenimientoSecciones$2.class
+vista\ProcesoAsignacionCursosMaestros$AsignacionCursos$3.class
 vista\MantenimientoFacultades$3.class
 vista\ProcesoTesoreria$4.class
 vista\ProcesoTesoreria$1.class
@@ -107,6 +112,7 @@ vista\MantenimientoTiposDeMoneda.class
 vista\MantenimientoTiposDeMoneda$1.class
 vista\MdiGeneral$7.class
 vista\MdiGeneral$2.class
+vista\ProcesoAsignacionCursosMaestros$AsignacionCursos$2.class
 vista\Login.class
 controlador\Facultades.class
 vista\MantenimientoFacultades$5.class
@@ -159,6 +165,7 @@ vista\MdiGeneral$12.class
 vista\MantenimientoPagos$2.class
 controlador\Alumnos.class
 modelo\EmpleadoDAO.class
+vista\ProcesoAsignacionCursosMaestros$AsignacionCursos.class
 vista\MantenimientoCiclos.class
 vista\MdiGeneral$3.class
 vista\MantenimientoPagos.class
