@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import controlador.Boletas;
+import java.sql.ResultSet;
 
 public class BoletasDAO {
 
     private static final String SQL_INSERT = "INSERT INTO boletas(codigo_boleta, codigo_maestro, tipo_de_pago, semestre, año, mes) VALUES(?, ?, ?, ?, ?, ?)";
+    private static final String SQL_QUERY = "SELECT codigo_boleta, codigo_maestro, tipo_de_pago, semestre, año, mes FROM boletas WHERE codigo_boleta = ?";
 
     public int insert(Boletas boleta) {
         Connection conn = null;
@@ -32,5 +34,29 @@ public class BoletasDAO {
             Conexion.close(conn);
         }
         return rows;
+    }
+    
+    public Boletas query(Boletas boleta) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_QUERY);
+            stmt.setString(1, boleta.getCodigoBoleta());
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                boleta.setTipoDePago(rs.getString("tipo_de_pago"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+
+        return boleta;
     }
 }

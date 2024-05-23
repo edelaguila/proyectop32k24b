@@ -16,6 +16,9 @@ public class Boletas {
         this.año = año;
         this.mes = mes;
     }
+    
+    public Boletas(){
+    }
 
     // Getters y setters
     public String getCodigoBoleta() {

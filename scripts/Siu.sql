@@ -177,6 +177,7 @@ CREATE TABLE tiposdemoneda
 (
   id_moneda INT NOT NULL AUTO_INCREMENT,
   nombre_moneda VARCHAR(45),
+  valor_moneda VARCHAR(45),
   PRIMARY KEY (id_moneda)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 -- -----------------------------------------------------
