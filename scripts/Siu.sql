@@ -215,3 +215,14 @@ CREATE TABLE Tesoreria (
 	FOREIGN KEY (aplid) references aplicacion (aplid),
 	FOREIGN KEY (usuid) references usuario (id_usuario)    
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;	
+
+-- -----------------------------------------------------
+-- Table `educativo`.`ciclos`
+-- -----------------------------------------------------
+CREATE TABLE ciclos
+(
+  codigo_ciclo VARCHAR(5),
+  nombre_ciclo VARCHAR(45),
+  estatus_ciclo VARCHAR(10),
+  PRIMARY KEY (codigo_ciclo)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
