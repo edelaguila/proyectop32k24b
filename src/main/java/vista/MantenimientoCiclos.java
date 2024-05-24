@@ -400,7 +400,7 @@ public class MantenimientoCiclos extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+        Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "PRN");
         
     }//GEN-LAST:event_btnReporteActionPerformed
 
