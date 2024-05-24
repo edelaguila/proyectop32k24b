@@ -5,6 +5,7 @@
 package vista;
 
 import controlador.Boletas;
+import controlador.ProcesoTiposDeMonedas;
 import controlador.TesoreriaP;
 import controlador.TiposDeMoneda;
 
@@ -65,10 +66,10 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
         boletaAConsultar = boletasDAO.query(boletaAConsultar);
         
         //Se busca el tipo de pago para calcular el monto a pagar
-        TiposDePagos TiposDePagosAConsultar = new TiposDePagos();
+        TiposDePagos tiposDePagosAConsultar = new TiposDePagos();
         ProcesoTiposDeMonedasDAO procesotiposdepagoDAO = new ProcesoTiposDeMonedasDAO();
-        TiposDePagosAConsultar.setNombrePago(boletaAConsultar.getTipoDePago());
-        TiposDePagosAConsultar = procesotiposdepagoDAO.query(TiposDePagosAConsultar);
+        tiposDePagosAConsultar.setNombrePago(boletaAConsultar.getTipoDePago());
+        tiposDePagosAConsultar = procesotiposdepagoDAO.query(tiposDePagosAConsultar);
         
         //Se busca la moneda más adecuada para el pago
         TiposDeMoneda monedaAConsultar = new TiposDeMoneda();
@@ -77,10 +78,10 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
         monedaAConsultar = tiposDeMonedaDAO.query(monedaAConsultar);
         
         // Verificamos si el valor es null
-        if (TiposDePagosAConsultar.getcantidadPago() == null) {
+        if (tiposDePagosAConsultar.getcantidadPago() == null) {
             lbTotal.setText("0");
         } else {
-            lbTotal.setText(TiposDePagosAConsultar.getcantidadPago() + " " + monedaAConsultar.getNombreMoneda());
+            lbTotal.setText(tiposDePagosAConsultar.getcantidadPago() + " " + monedaAConsultar.getNombreMoneda());
         } 
     }
 
@@ -273,6 +274,24 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
         TesoreriaAConsultar.setAnoTarjeta((String) cboxATarjeta.getSelectedItem());
         //TesoreriaPDAO.insert(TesoreriaAConsultar);
         
+        //Se busca la boleta ingresada
+        Boletas boletaAConsultar = new Boletas();
+        BoletasDAO boletasDAO = new BoletasDAO();       
+        boletaAConsultar.setCodigoBoleta(txtNBoleta.getText());
+        boletaAConsultar = boletasDAO.query(boletaAConsultar);
+        
+        //Se busca el tipo de pago para calcular el monto a pagar
+        TiposDePagos tiposDePagosAConsultar = new TiposDePagos();
+        ProcesoTiposDeMonedasDAO procesotiposdepagoDAO = new ProcesoTiposDeMonedasDAO();
+        tiposDePagosAConsultar.setNombrePago(boletaAConsultar.getTipoDePago());
+        tiposDePagosAConsultar = procesotiposdepagoDAO.query(tiposDePagosAConsultar);
+        
+        //Se busca la moneda más adecuada para el pago
+        TiposDeMoneda monedaAConsultar = new TiposDeMoneda();
+        TiposDeMonedaDAO tiposDeMonedaDAO = new TiposDeMonedaDAO();
+        monedaAConsultar.setIdMoneda(1);
+        monedaAConsultar = tiposDeMonedaDAO.query(monedaAConsultar);
+        
         // Validar los datos
         if (txtNTarjeta.getText().length() <= 5 || txtCVVTarjeta.getText().length() != 3 || 
                 cboxMTarjeta.getSelectedItem().equals("Seleccionar") || cboxATarjeta.getSelectedItem().equals("Seleccionar")) {
@@ -281,6 +300,13 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
         } else {
             boolean pago = true;
             if (pago = true) {
+                ProcesoTiposDeMonedas pagoAInsertar = new ProcesoTiposDeMonedas();
+                pagoAInsertar.setCodigoBoleta(txtNBoleta.getText());
+                pagoAInsertar.setNombrePago(boletaAConsultar.getTipoDePago());
+                pagoAInsertar.setcantidadPago(tiposDePagosAConsultar.getcantidadPago());    
+                pagoAInsertar.setNombreMoneda(monedaAConsultar.getNombreMoneda());
+                Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "CHECK");  
+                procesotiposdepagoDAO.insert(pagoAInsertar);
                 txtEstadoTransaccion.setText("Pago recibido");
                 btnImprimir.setEnabled(true);
                 btnTransaccion1.setEnabled(false);
@@ -292,7 +318,7 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTransaccionActionPerformed
 
     private void btnTransaccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccion1ActionPerformed
-        // TODO add your handling code here:
+        // Se cancela el pago
         Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "TXC");
 
         txtEstadoTransaccion.setText("Pago cancelado");
@@ -307,9 +333,11 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTransaccion1ActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        // TODO add your handling code here:
+        //Se genera un certificado de pago que podemos imprimir o guardar
         Connection conn = null;        
-        Map p = new HashMap();
+        Map<String, Object> p = new HashMap<>();
+        String codigobuscado = txtNBoleta.getText();
+        p.put("codigo_boleta", codigobuscado);
         JasperReport report;
         JasperPrint print;
 
@@ -326,7 +354,6 @@ public class ProcesoTiposDeMoneda extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
