@@ -14,9 +14,20 @@ import controlador.Boletas2;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import modelo.Boletas2DAO;
+import controlador.CursosAsignados;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import modelo.CursosAsignadosDAO;
 import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Conexion;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame {
      int codigoAplicacion = 3456;
@@ -26,6 +37,7 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
     private JButton botonPasarDerecha;
     private JButton botonPasarIzquierda;
     private JButton botonGenerar;
+    private JButton botonIngresar;
     private DefaultTableModel modeloAsignar;
     private DefaultTableModel modeloAsignada;
     
@@ -38,17 +50,16 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
     }
 
        public AsignacionCursos() {
-        // Configuración de la ventana
         setTitle("Gestión de Cursos");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Inicialización de modelos de tabla
+
         modeloAsignar = new DefaultTableModel(new Object[]{"Cursos"}, 0);
         modeloAsignada = new DefaultTableModel(new Object[]{"Cursos"}, 0);
 
-        // Llenar tablaCursoAsignar con datos de ejemplo
+     
         modeloAsignar.addRow(new Object[]{"Programación III"});
         modeloAsignar.addRow(new Object[]{"Metódos Númericos"});
         modeloAsignar.addRow(new Object[]{"Electrónica Analógica"});
@@ -59,24 +70,24 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
         modeloAsignar.addRow(new Object[]{"Lógica en Sistemas"});
         modeloAsignar.addRow(new Object[]{"Programación I"});
         modeloAsignar.addRow(new Object[]{"Programación II"});
-
-        // Inicialización de tablas
+     
         tablaCursoAsignar = new JTable(modeloAsignar);
         tablaCursoAsignada = new JTable(modeloAsignada);
 
-        // Inicialización de botones
         botonPasarDerecha = new JButton("🡪");
         botonPasarIzquierda = new JButton("🡨");
-        botonGenerar = new JButton("Generar");
+        botonGenerar = new JButton("Generar Reporte");
+        botonIngresar = new JButton("Ingresar a DB");
 
-        // Panel para los botones
+        
         JPanel panelBotones = new JPanel();
         panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
         panelBotones.add(botonPasarDerecha);
         panelBotones.add(botonPasarIzquierda);
         panelBotones.add(botonGenerar);
+        panelBotones.add(botonIngresar);
 
-        // Añadir componentes a la ventana
+      
         add(new JScrollPane(tablaCursoAsignar), BorderLayout.WEST);
         add(panelBotones, BorderLayout.CENTER);
         add(new JScrollPane(tablaCursoAsignada), BorderLayout.EAST);
@@ -94,7 +105,7 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
             }
         });
 
-        // Acción del botón de pasar a la izquierda
+   
         botonPasarIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,19 +117,62 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
                 }
             }
         });
-        botonGenerar.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-              StringBuilder reporte = new StringBuilder("Reporte de Cursos Asignados:\n\n");
-        for (int i = 0; i < modeloAsignada.getRowCount(); i++) {
-            reporte.append(modeloAsignada.getValueAt(i, 0)).append("\n");
+   botonGenerar.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       Connection conn = null;        
+        Map p = new HashMap();
+        JasperReport report;
+        JasperPrint print;
+
+        try {
+            conn = Conexion.getConnection();
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/main/java/reportes/rptReporteCursosAsignadosMaestros.jrxml");
+	    print = JasperFillManager.fillReport(report, p, conn);
+            JasperViewer view = new JasperViewer(print, false);
+	    view.setTitle("Reporte Prueba");
+            view.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        mostrarReporte(reporte.toString());
     }
-            
-            
-        });
-        
+});
+
+   botonIngresar.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+     
+        int rowCount = modeloAsignada.getRowCount();
+        String primerCurso = "";
+        String segundoCurso = "";
+        String tercerCurso = "";
+        String cuartoCurso = "";
+        String quintoCurso = "";
+
+        if (rowCount > 0) primerCurso = (String) modeloAsignada.getValueAt(0, 0);
+        if (rowCount > 1) segundoCurso = (String) modeloAsignada.getValueAt(1, 0);
+        if (rowCount > 2) tercerCurso = (String) modeloAsignada.getValueAt(2, 0);
+        if (rowCount > 3) cuartoCurso = (String) modeloAsignada.getValueAt(3, 0);
+        if (rowCount > 4) quintoCurso = (String) modeloAsignada.getValueAt(4, 0);
+
+       
+        CursosAsignados cursoAsignado = new CursosAsignados(primerCurso, segundoCurso, tercerCurso, cuartoCurso, quintoCurso);
+
+       
+        CursosAsignadosDAO cursoAsignadoDAO = new CursosAsignadosDAO();
+        int rowsInserted = cursoAsignadoDAO.insert(cursoAsignado);
+
+        if (rowsInserted > 0) {
+            JOptionPane.showMessageDialog(null, "Cursos ingresados exitosamente a la base de datos.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al ingresar los cursos a la base de datos.");
+        }
+    }
+});
+
+
+
     }
 
     
@@ -275,8 +329,8 @@ public class ProcesoAsignacionCursosMaestros extends javax.swing.JInternalFrame 
       String Año = cmbAño.getSelectedItem().toString();
       String IDBoleta = txtCodigoBoleta.getText();
       
-      if(txtCodigoBoleta.getText().isEmpty() || txtCodigoMaestro.getText().isEmpty() || cmbSemestre.getSelectedItem().equals("Seleccionar")
-   || txtJornada.getText().isEmpty() || txtSeccion.getText().isEmpty() || cmbAño.getSelectedItem().equals("Seleccionar")) {
+      if(IDBoleta.isEmpty() || Semestre.isEmpty() || Semestre.equals("Seleccionar")
+   || Jornada.isEmpty() || Seccion.isEmpty() || Año.equals("Seleccionar")) {
      JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
     return;
 }
@@ -292,9 +346,15 @@ if (option == JOptionPane.OK_OPTION) {
         return; 
     }
 
-    if (codigoBoleta.equals(txtCodigoBoleta.getText())) {
+    if (codigoBoleta.equals(IDBoleta)) {
         JOptionPane.showMessageDialog(this, "Boleta Verificada exitosamente. Código de boleta: " + codigoBoleta, "Éxito", JOptionPane.INFORMATION_MESSAGE);
-         new AsignacionCursos().setVisible(true);
+        
+        Boletas2 boleta = new Boletas2(IDBoleta, CodigoMaestro, Jornada, Seccion, Semestre, Año);
+        
+        Boletas2DAO boletaDAO = new Boletas2DAO();
+        int rowsInserted = boletaDAO.insert(boleta);
+        
+        new AsignacionCursos().setVisible(true);
         
     }
     } else {
