@@ -184,17 +184,13 @@ CREATE TABLE tiposdemoneda
 -- Table `siu`.`Tesoreria`
 -- -----------------------------------------------------
 CREATE TABLE Tesoreria (
-    id_tesoreria INT NOT NULL AUTO_INCREMENT,
-    concepto VARCHAR(100),
-    monto DECIMAL(10, 2),
+    codigo_boleta VARCHAR(50),
+    nombre_tipo_pago VARCHAR(45),
+    cantidad_tipo_pago VARCHAR(30),
+	nombre_moneda VARCHAR(45),
     fecha DATE,
-    id_banco INT,
-    id_tipo_pago INT,
-    id_moneda INT,
-    PRIMARY KEY (id_tesoreria),
-    FOREIGN KEY (id_banco) REFERENCES bancos(id_banco),
-    FOREIGN KEY (id_tipo_pago) REFERENCES TiposDePagos(id_tipo_pago),
-    FOREIGN KEY (id_moneda) REFERENCES tiposdemoneda(id_moneda)
+    estado_boleta VARCHAR(45),
+    PRIMARY KEY (codigo_boleta)
 )ENGINE = InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE IF NOT EXISTS aplicacion(
   aplid int NOT NULL AUTO_INCREMENT,
