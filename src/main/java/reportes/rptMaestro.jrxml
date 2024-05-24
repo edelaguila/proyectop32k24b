@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7eff65d7-8834-4755-9166-dffa344878c6">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7eff65d7-8834-4755-9166-dffa344878c6">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -32,21 +32,20 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
-			<image>
-				<reportElement x="-20" y="0" width="595" height="64" uuid="ef1bf00f-de2f-44af-a103-20efdb22af48"/>
-				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
-			</image>
+		<band height="69" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="0" y="6" width="555" height="33" uuid="8bced6ae-1751-4f52-8a54-34efc4b72aea"/>
+				<reportElement style="Title" x="0" y="6" width="555" height="33" forecolor="#000000" uuid="8bced6ae-1751-4f52-8a54-34efc4b72aea"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Universidad Mariano Galvez de Guatemala]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="152" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="305b2792-f3f3-4447-8f53-47b9aa86297f"/>
+				<reportElement style="SubTitle" x="152" y="39" width="200" height="22" forecolor="#000000" uuid="305b2792-f3f3-4447-8f53-47b9aa86297f"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Reporte de Maestros]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="68" width="553" height="1" uuid="3f197425-c00b-4ec2-b90d-ee4b22df4009"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
@@ -102,6 +101,9 @@
 				</textElement>
 				<text><![CDATA[Estatus]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="35" width="552" height="1" uuid="b9d44803-e94a-459d-88fd-ebae3f23337a"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>

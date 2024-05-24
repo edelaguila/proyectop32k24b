@@ -192,10 +192,6 @@ public class Acta_Evaluacion extends javax.swing.JFrame {
 
                 if (txtCarrera.getText().equals(maestroAConsultar.getCodigo_carrera()) && txtMaestros.getText().equals(maestroAConsultar.getCodigo_maestro()) && txtSeccion.getText().equals(maestroAConsultar.getCodigo_seccion()) && txtCurso.getText().equals(maestroAConsultar.getCodigo_curso())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido al Ingreso de Notas\n", "Datos Validados", JOptionPane.INFORMATION_MESSAGE);
-                    // registrando usuario conectado
-                   // clsUsuarioConectado usuarioRegistrado = new clsUsuarioConectado();
-                   // usuarioRegistrado.setIdUsuario(maestroAConsultar.getId_usuario());
-                   // usuarioRegistrado.setNombreUsuario(maestroAConsultar.getUsername());
                     clsBitacora Auditoria = new clsBitacora();
                     Auditoria.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "LOGAUD");
                     
