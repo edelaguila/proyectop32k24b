@@ -71,9 +71,4 @@ public class Boletas2 {
     public void setAño(String año) {
         this.año = año;
     }
-
-    @Override
-    public String toString(){
-        return "Boletas {" + "codigo_boleta=" + codigo_boleta + ", codigo_maestro=" + codigo_maestro + ", jornada=" + jornada + "seccion="+ seccion + ", semestre= " + semestre + ", año= " + año + '}';
-    }
 }

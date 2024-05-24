@@ -375,8 +375,8 @@ public class MantenimientoPagos extends javax.swing.JInternalFrame {
             JasperViewer view = new JasperViewer(print, false);
 	    view.setTitle("Reporte Tipos de Pagos");
             view.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnReporteActionPerformed
 

@@ -8,7 +8,6 @@ vista\MantenimientoSecciones$9.class
 vista\MantenimientoTiposDeMoneda$8.class
 vista\MantenimientoCursos$4.class
 vista\MdiGeneral.class
-vista\ProcesoAsignacionCursosAMaestros.class
 vista\MantenimientoMaestros$1.class
 vista\ProcesoAsignacionCursosMaestros$AsignacionCursos$1.class
 controlador\Ciclos.class
@@ -19,7 +18,9 @@ vista\MantenimientoCiclos$4.class
 vista\MantenimientoCarreras$1.class
 vista\MantenimientoCarreras$7.class
 vista\MantenimientoCursos$1.class
+vista\ProcesoAsignacionCursosMaestros$AsignacionCursos$4.class
 vista\MantenimientoFacultades$7.class
+vista\AsignacionCursoAMaestros$3.class
 controlador\TesoreriaP.class
 vista\MantenimientoMaestros$7.class
 modelo\CursosDAO.class
@@ -65,7 +66,6 @@ vista\ProcesosTiposDePagos.class
 vista\MdiGeneral$5.class
 vista\Login$3.class
 vista\MantenimientoSecciones$1.class
-vista\ProcesoAsignacionCursosAMaestros$2.class
 modelo\MaestrosDAO.class
 modelo\CiclosDAO.class
 vista\MantenimientoFacultades$2.class
@@ -78,7 +78,6 @@ vista\MantenimientoCiclos$6.class
 vista\MantenimientoTiposDeMoneda$4.class
 modelo\AlumnosDAO.class
 vista\MantenimientoSecciones$8.class
-vista\ProcesoAsignacionCursosAMaestros$1.class
 controlador\Empleado.class
 vista\ProcesoTiposDeMoneda$3.class
 vista\ProcesosTiposDePagos$1.class
@@ -97,6 +96,7 @@ vista\MantenimientoFacultades$3.class
 vista\ProcesoTesoreria$4.class
 vista\ProcesoTesoreria$1.class
 vista\MantenimientoPagos$5.class
+controlador\CursosAsignados.class
 vista\Login$2.class
 modelo\TiposDeMonedaDAO.class
 vista\ProcesosTiposDePagos$3.class
@@ -123,6 +123,7 @@ controlador\Boletas.class
 modelo\SeccionDAO.class
 controlador\Usuario.class
 vista\MantenimientoFacultades$8.class
+modelo\CursosAsignadosDAO.class
 vista\MantenimientoCarreras$5.class
 vista\MantenimientoCarreras$8.class
 vista\MantenimientoBancos$3.class
@@ -132,6 +133,7 @@ vista\MantenimientoCiclos$5.class
 vista\MantenimientoMaestros$3.class
 vista\MantenimientoSecciones$4.class
 vista\MdiGeneral$8.class
+vista\AsignacionCursoAMaestros$2.class
 controlador\clsBitacora.class
 vista\MantenimientoFacultades$6.class
 vista\MantenimientoCarreras$2.class
@@ -153,9 +155,11 @@ vista\MantenimientoCursos$5.class
 vista\MantenimientoMaestros$5.class
 vista\MantenimientoBancos$1.class
 modelo\BoletasDAO.class
+vista\AsignacionCursoAMaestros$1.class
 vista\Login$1.class
 vista\MantenimientoCarreras$3.class
 vista\MantenimientoSecciones$5.class
+vista\AsignacionCursoAMaestros.class
 modelo\Boletas2DAO.class
 vista\MantenimientoAlumnos$2.class
 vista\MantenimientoCiclos$3.class

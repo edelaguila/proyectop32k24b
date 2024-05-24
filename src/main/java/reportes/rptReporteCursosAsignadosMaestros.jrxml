@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d66799ca-cf55-44d1-9ad6-db186dd4753f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM boletas2, cursosasignados]]>
+	</queryString>
+	<field name="codigo_maestro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jornada" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="seccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="semestre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="año" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo_boleta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="primer_curso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="segundo_curso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tercer_curso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cuarto_curso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quinto_curso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="290" y="30" width="217" height="20" uuid="69e80e4a-ca8d-43e1-941f-c2b621116596"/>
+				<text><![CDATA[Reporte Asignación de Cursos para Maestros]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="91" y="41" width="100" height="20" uuid="b41638c6-ffd3-4c9c-9561-402e71024e6f"/>
+				<text><![CDATA[Código boleta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="41" width="78" height="20" uuid="325e0fd5-2ed8-42ed-869b-2bd418635d7e"/>
+				<text><![CDATA[Código maestro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="41" width="58" height="20" uuid="00f1ad58-895f-465b-9741-f220e27e5539"/>
+				<text><![CDATA[Semestre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="41" width="44" height="20" uuid="20473b85-6b71-4c8d-9c7a-98bde7dd6b50"/>
+				<text><![CDATA[Seccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="41" width="34" height="20" uuid="1dfa7205-f23b-44de-91e8-8509d7d992eb"/>
+				<text><![CDATA[Jornada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="564" y="41" width="34" height="20" uuid="a7ae6304-ec61-4f26-91ff-0232e80ade7e"/>
+				<text><![CDATA[Año]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="91" y="10" width="68" height="20" uuid="54f52085-509e-4a1c-88d2-f49d49009ec0"/>
+				<textFieldExpression><![CDATA[$F{codigo_boleta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="10" width="78" height="20" uuid="0a25e42e-c03c-4954-a8d1-bcc17b77a318"/>
+				<textFieldExpression><![CDATA[$F{codigo_maestro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="10" width="69" height="20" uuid="8ac9103b-aeab-4106-8fe3-696bfbfadf8d"/>
+				<textFieldExpression><![CDATA[$F{semestre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="10" width="58" height="20" uuid="9ff7c167-4f27-4ee0-8d5b-53190415c9c5"/>
+				<textFieldExpression><![CDATA[$F{seccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="10" width="56" height="20" uuid="d0669e6e-4550-45dc-bf14-38972066e930"/>
+				<textFieldExpression><![CDATA[$F{jornada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="564" y="10" width="44" height="20" uuid="1c43696e-5e7d-4144-8c29-b54c5214d150"/>
+				<textFieldExpression><![CDATA[$F{año}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="65" width="100" height="20" uuid="28530aa0-a2db-444a-bc67-00ae2fde373f"/>
+				<textFieldExpression><![CDATA[$F{primer_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="65" width="100" height="20" uuid="65ea5699-d378-498e-a8b9-63a7211e3b61"/>
+				<textFieldExpression><![CDATA[$F{segundo_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="65" width="100" height="20" uuid="ab30672a-831f-41c1-9cf4-7de7e59542c0"/>
+				<textFieldExpression><![CDATA[$F{tercer_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="65" width="100" height="20" uuid="3dc78aa5-db27-4d30-9b74-053612fa5676"/>
+				<textFieldExpression><![CDATA[$F{cuarto_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="577" y="65" width="100" height="20" uuid="d6f0f03d-2a18-4574-ad24-0c85cb55ed45"/>
+				<textFieldExpression><![CDATA[$F{quinto_curso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="45" width="100" height="20" uuid="30f8a18c-bce1-46ec-bff1-9b064567d2d4"/>
+				<text><![CDATA[Primer curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="45" width="100" height="20" uuid="e89e74e0-faca-4a30-b3f6-90d4bb80ae2f"/>
+				<text><![CDATA[Segundo curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="306" y="45" width="100" height="20" uuid="70b4b290-4372-4add-b618-c6e7d6e1e044"/>
+				<text><![CDATA[Tercer curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="45" width="100" height="20" uuid="5fe17323-9a99-4011-a00c-b9cec9d3aae7"/>
+				<text><![CDATA[Cuarto curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="577" y="45" width="100" height="20" uuid="eac3a254-b9c2-400f-838f-6652c9bb80a9"/>
+				<text><![CDATA[Quinto curso]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
