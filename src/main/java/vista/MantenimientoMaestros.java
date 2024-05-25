@@ -445,10 +445,10 @@ public class MantenimientoMaestros extends javax.swing.JInternalFrame {
         try {
             conn = Conexion.getConnection();
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/reportes/rptTabla_Maestros.jrxml");
+                    + "/src/main/java/reportes/rptMaestro.jrxml");
 	    print = JasperFillManager.fillReport(report, p, conn);
             JasperViewer view = new JasperViewer(print, false);
-	    view.setTitle("Reporte Maestros");
+	    view.setTitle("Reporte Ciclos");
             view.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();

@@ -23,6 +23,7 @@ import controlador.clsBitacora;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import modelo.Conexion;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -77,7 +78,7 @@ public class ProcesoIngresoNotas extends javax.swing.JInternalFrame {
         }
     }
 
-    public void buscarMaestros() {
+    public void buscarNotas() {
         IngresoNotas notasAConsultar = new IngresoNotas();
         IngresoNotasDAO notasDAO = new IngresoNotasDAO();
         
@@ -322,7 +323,7 @@ public class ProcesoIngresoNotas extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(283, 283, 283)
                                         .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 4, Short.MAX_VALUE))
+                                        .addGap(0, 14, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,12 +339,12 @@ public class ProcesoIngresoNotas extends javax.swing.JInternalFrame {
                                 .addComponent(txtExamenFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(label1)
                         .addGap(294, 294, 294))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -404,7 +405,7 @@ public class ProcesoIngresoNotas extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnBuscar)
                             .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -422,16 +423,47 @@ public class ProcesoIngresoNotas extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
+ 
+        
+        int nota1 = Integer.valueOf(txtParcial1.getText());
+        int nota2 = Integer.valueOf(txtParcial2.getText());
+        int nota3 = Integer.valueOf(txtExamenFinal.getText());
+        int nota4 = Integer.valueOf(txtZona.getText());
+        
         IngresoNotasDAO notasDAO = new IngresoNotasDAO();
         IngresoNotas notaAInsertar = new IngresoNotas();
         notaAInsertar.setCod_acta(txtCodigo.getText());
         notaAInsertar.setNot_semestre(txtSemestre.getText());
         notaAInsertar.setNot_año(txtAño.getText());
         notaAInsertar.setCarnet_alumno(txtCarnet.getText());
-        notaAInsertar.setNot_parcial1(Integer.valueOf(txtParcial1.getText()));
-        notaAInsertar.setNot_parcial2(Integer.valueOf(txtParcial1.getText()));
-        notaAInsertar.setNot_examenfinal(Integer.valueOf(txtExamenFinal.getText()));
-        notaAInsertar.setNot_zonatareas(Integer.valueOf(txtZona.getText()));
+        
+        if(nota1>=0 && nota1<=20){
+          notaAInsertar.setNot_parcial1(Integer.valueOf(txtParcial1.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR, la nota del parcial 1 no puede ser mayor a 20 ni menor que 0", "ERROR", JOptionPane.ERROR_MESSAGE);
+             txtParcial1.setText("");
+        }
+        
+        if(nota2>=0 && nota2<=25){
+          notaAInsertar.setNot_parcial2(Integer.valueOf(txtParcial2.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR, la nota del parcial 2 no puede ser mayor a 25 ni menor qué 0", "ERROR", JOptionPane.ERROR_MESSAGE);
+        txtParcial2.setText("");
+        }
+            
+        if(nota3>=0 && nota3<=35){
+          notaAInsertar.setNot_examenfinal(Integer.valueOf(txtExamenFinal.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR, la nota del Examen Final no puede ser mayor a 35 ni menor qué 0", "ERROR", JOptionPane.ERROR_MESSAGE);
+        txtExamenFinal.setText("");
+        }
+        
+        if(nota4>=0 && nota4<=20){
+          notaAInsertar.setNot_zonatareas(Integer.valueOf(txtZona.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR, la nota de la Zona no puede ser mayor a 20 ni menor qué 0", "ERROR", JOptionPane.ERROR_MESSAGE);
+        txtZona.setText("");
+        }
         int notafinal = notaAInsertar.calculoNotaFinal(Integer.valueOf(txtParcial1.getText()), Integer.valueOf(txtParcial2.getText()), Integer.valueOf(txtExamenFinal.getText()), Integer.valueOf(txtZona.getText()));
         notaAInsertar.setNot_totalpuntos(notafinal);
         notasDAO.insert(notaAInsertar);
@@ -441,7 +473,7 @@ public class ProcesoIngresoNotas extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        buscarMaestros();
+        buscarNotas();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
