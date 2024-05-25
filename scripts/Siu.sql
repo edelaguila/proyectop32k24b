@@ -219,3 +219,17 @@ CREATE TABLE IF NOT EXISTS boletas (
     mes VARCHAR(20),
     codigo_boleta VARCHAR(50)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS cursosasignados (
+  primer_curso VARCHAR(50),
+    segundo_curso VARCHAR(50),
+    tercer_curso VARCHAR(50),
+    cuarto_curso VARCHAR(50),
+    quinto_curso VARCHAR(50)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS cursosasignados (
+  primer_curso VARCHAR(50),
+    segundo_curso VARCHAR(50),
+    tercer_curso VARCHAR(50),
+    cuarto_curso VARCHAR(50),
+    quinto_curso VARCHAR(50)
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
